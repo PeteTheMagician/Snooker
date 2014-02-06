@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Snooker Assistant</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <string name="player_name">Name</string>
+    
+    <string name="game_break">Break</string>
+    <string name="game_score">Score</string>
+    <string name="game_turn">Turn</string>
+    <string name="game_stop">Stop</string>
+    <string name="game_foul">Foul</string>
+    
+    <string name="ball_red">Red</string>
+    <string name="ball_yellow">Yellow</string>
+    <string name="ball_green">Green</string>
+    <string name="ball_brown">Brown</string>
+    <string name="ball_blue">Blue</string>
+    <string name="ball_pink">Pink</string>
+    <string name="ball_black">Black</string>
+ 
+    <string name="click_red">clickRed</string>
+    <string name="click_yellow">clickYellow</string>
+    <string name="click_green">clickGreen</string>
+    <string name="click_brown">clickBrown</string>
+    <string name="click_blue">clickBlue</string>
+    <string name="click_pink">clickPink</string>
+    <string name="click_black">clickBlack</string>
+    <string name="click_foul">clickFoul</string>
+    <string name="click_player_1">clickChangePlayer1</string>
+    <string name="click_player_2">clickChangePlayer2</string>
+    
+    <string name="click_name_1">clickPlayer1Name</string>
+	<string name="click_name_2">clickPlayer2Name</string>
+</resources>
