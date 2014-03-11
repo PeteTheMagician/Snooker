@@ -38,6 +38,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+//		creating buttons
 		final Button buttonPlayer1 = (Button)findViewById(R.id.buttonPlayer1);
 		final Button buttonPlayer2 = (Button)findViewById(R.id.buttonPlayer2);
 
@@ -48,6 +49,7 @@ public class MainActivity extends Activity {
 		name1 = (TextView) findViewById(R.id.textPlayer1Name);
 		name2 = (TextView) findViewById(R.id.textPlayer2Name);
 		
+//		onClick button actions
 		buttonPlayer1.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -99,8 +101,7 @@ public class MainActivity extends Activity {
 		switch (item.getItemId()) {
 			case 1:
 				game.undo(turn);
-				Toast toast = Toast.makeText(getApplicationContext(), "This works only one move back (for now)", Toast.LENGTH_SHORT);
-				toast.show();
+				shortToast("(i) Undo move");
 				updateScore();
 				break;
 			case 2:
@@ -155,8 +156,7 @@ public class MainActivity extends Activity {
 				if(Integer.parseInt(input.getText().toString()) > 3 & Integer.parseInt(input.getText().toString()) < 8)
 					game.foul(Integer.parseInt(input.getText().toString()), turn);
 				else{
-					Toast toast = Toast.makeText(getApplicationContext(), "Incorrect value. Try again", Toast.LENGTH_SHORT);
-					toast.show();
+					shortToast("Incorrect value. Try again");
 				}
 				updateScore();
 			}
@@ -179,7 +179,11 @@ public class MainActivity extends Activity {
 		score2.setText(Integer.toString(game.getScorePlayer2()));
 		}
 	}
-
+	
+	public void shortToast(String string){
+		Toast toast = Toast.makeText(getApplicationContext(), string, Toast.LENGTH_SHORT);
+		toast.show();
+	}
 	
 	public void clickPlayer1Name(View v){
 		enterName(name1);
@@ -192,36 +196,43 @@ public class MainActivity extends Activity {
 	public void clickRed(View v){
 		Log.i(TAG, "red is clicked");		
 		game.addScore(1, turn);
+		shortToast("+1");
 		updateScore();
 	}
 	public void clickYellow(View v){
 		Log.i(TAG, "yellow is clicked");		
 		game.addScore(2, turn);
+		shortToast("+2");
 		updateScore();
 	}
 	public void clickGreen(View v){
 		Log.i(TAG, "green is clicked");
 		game.addScore(3, turn);
+		shortToast("+3");
 		updateScore();
 	}
 	public void clickBrown(View v){
 		Log.i(TAG, "brown is clicked");
 		game.addScore(4, turn);
+		shortToast("+4");
 		updateScore();
 	}
 	public void clickBlue(View v){
 		Log.i(TAG, "blue is clicked");
 		game.addScore(5, turn);
+		shortToast("+5");
 		updateScore();
 	}
 	public void clickPink(View v){
 		Log.i(TAG, "pink is clicked");
 		game.addScore(6, turn);
+		shortToast("+6");
 		updateScore();
 	}
 	public void clickBlack(View v){
 		Log.i(TAG, "black is clicked");
 		game.addScore(7, turn);
+		shortToast("+7");
 		updateScore();
 	}
 	public void clickFoul(View v){

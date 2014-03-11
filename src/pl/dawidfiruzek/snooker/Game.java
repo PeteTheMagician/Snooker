@@ -1,5 +1,14 @@
 package pl.dawidfiruzek.snooker;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Vector;
+
+import android.R.integer;
+import android.util.SparseBooleanArray;
+
 public class Game {
 
 	public enum Turn{
@@ -12,16 +21,23 @@ public class Game {
 	private int scorePlayer2;
 	
 	private int currentBreak;
-	private int lastMove;
+	//private int lastMove;
+	ArrayList<Integer> lastMovePoints = new ArrayList<Integer>();
+	ArrayList<Turn> whoseMoveThisIs = new ArrayList<Turn>();
+	SparseBooleanArray wasItFoul = new SparseBooleanArray();
+	int iterator;
 	
-	private boolean foulFlag;
+//	private boolean foulFlag;
 	
 	public Game(){
 		scorePlayer1 = 0;
 		scorePlayer2 = 0;
 		currentBreak = 0;
-		lastMove = 0;
-		foulFlag = false;
+		lastMovePoints.add(0);
+		whoseMoveThisIs.add(Turn.NOBODY);
+		//foulFlag = false;
+		iterator = 0;
+		wasItFoul.put(iterator, false);
 	}
 	
 	public void addScore(int points, Turn turn){
@@ -30,14 +46,20 @@ public class Game {
 			case PLAYER1:
 				scorePlayer1 += points;
 				currentBreak += points;
-				lastMove = points;
-				foulFlag = false;
+				lastMovePoints.add(points);
+				whoseMoveThisIs.add(Turn.PLAYER1);
+				++iterator;
+				wasItFoul.put(iterator, false);
+				//foulFlag = false;
 				break;
 			case PLAYER2:
 				scorePlayer2 += points;
 				currentBreak += points;
-				lastMove = points;
-				foulFlag = false;
+				lastMovePoints.add(points);
+				whoseMoveThisIs.add(Turn.PLAYER2);
+				++iterator;
+				wasItFoul.put(iterator, false);
+				//foulFlag = false;
 				break;
 			case NOBODY:
 				break;
@@ -49,17 +71,65 @@ public class Game {
 		switch (turn){
 		case PLAYER1:
 			scorePlayer2 += points;
-			lastMove = points;
-			foulFlag = true;
+			lastMovePoints.add(points);
+			whoseMoveThisIs.add(Turn.PLAYER1);
+			++iterator;
+			wasItFoul.put(iterator, true);
+			//foulFlag = true;
 			break;
 		case PLAYER2:
 			scorePlayer1 += points;
-			lastMove = points;
-			foulFlag = true;
+			lastMovePoints.add(points);
+			whoseMoveThisIs.add(Turn.PLAYER2);
+			++iterator;
+			wasItFoul.put(iterator, true);
+
+			//foulFlag = true;
 			break;
 		case NOBODY:
 			break;
 		}
+	}
+	
+	public void undo(Turn turn){
+		if(wasItFoul.get(iterator)){
+			switch (whoseMoveThisIs.get(iterator)){
+			case PLAYER1:
+				scorePlayer2 -= lastMovePoints.get(iterator);
+				deleteUnusedValues();
+				break;
+			case PLAYER2:
+				scorePlayer1 -= lastMovePoints.get(iterator);
+				deleteUnusedValues();
+				break;
+			case NOBODY:
+				break;
+			}
+		}
+		else{
+			switch (whoseMoveThisIs.get(iterator)){
+			case PLAYER1:
+				scorePlayer1 -= lastMovePoints.get(iterator);
+				currentBreak -= lastMovePoints.get(iterator);
+				deleteUnusedValues();
+				break;
+			case PLAYER2:
+				scorePlayer2 -= lastMovePoints.get(iterator);
+				currentBreak -= lastMovePoints.get(iterator);
+				deleteUnusedValues();
+				break;
+			case NOBODY:
+				break;
+			}
+			
+		}
+	}
+	
+	private void deleteUnusedValues(){
+		whoseMoveThisIs.remove(iterator);
+		lastMovePoints.remove(iterator);
+		wasItFoul.delete(iterator);
+		--iterator;
 	}
 	
 	public int getScorePlayer1(){
@@ -78,37 +148,8 @@ public class Game {
 		currentBreak = 0;
 	}
 	
-	public void setFoulFlag(boolean flag){
-		foulFlag = flag;
-	}
+//	public void setFoulFlag(boolean flag){
+//		foulFlag = flag;
+//	}
 	
-	public void undo(Turn turn){
-		if(foulFlag){
-			switch (turn){
-				case PLAYER1:
-					scorePlayer2 -= lastMove;
-					break;
-				case PLAYER2:
-					scorePlayer1 -= lastMove;
-					break;
-				case NOBODY:
-					break;
-			}
-		}
-		else{
-			switch (turn){
-			case PLAYER1:
-				scorePlayer1 -= lastMove;
-				currentBreak -= lastMove;
-				break;
-			case PLAYER2:
-				scorePlayer2 -= lastMove;
-				currentBreak -= lastMove;
-				break;
-			case NOBODY:
-				break;
-		}
-			
-		}
-	}
 }
