@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 		final Button buttonPlayer1 = (Button)findViewById(R.id.buttonPlayer1);
 		final Button buttonPlayer2 = (Button)findViewById(R.id.buttonPlayer2);
 
-		turn = Turn.NOBODY;
+//		turn = Turn.NOBODY;
 		score1 = (TextView) findViewById(R.id.textPlayer1Score);
 		score2 = (TextView) findViewById(R.id.textPlayer2Score);
 		currentBreak = (TextView) findViewById(R.id.textPlayerBreak);
@@ -62,7 +62,7 @@ public class MainActivity extends Activity {
 				buttonPlayer2.setBackgroundColor(Color.GRAY);
 				
 				turn = Turn.PLAYER1;
-				game.resetBreak();
+				game.resetBreak(turn);
 				updateScore();
 				Log.i(TAG, "player 1 clicked");
 			}
@@ -80,7 +80,7 @@ public class MainActivity extends Activity {
 				buttonPlayer1.setBackgroundColor(Color.GRAY);
 				
 				turn = Turn.PLAYER2;
-				game.resetBreak();
+				game.resetBreak(turn);
 				updateScore();
 				Log.i(TAG, "player 2 clicked");
 			}
@@ -100,7 +100,7 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch (item.getItemId()) {
 			case 1:
-				game.undo(turn);
+				game.undo();
 				shortToast("(i) Undo move");
 				updateScore();
 				break;
