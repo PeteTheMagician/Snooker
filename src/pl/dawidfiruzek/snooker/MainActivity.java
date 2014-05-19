@@ -116,6 +116,7 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
+//	TODO: fix undoing move - visual effects of buttons are not draw correctly
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch (item.getItemId()) {
