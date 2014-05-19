@@ -7,8 +7,6 @@ public class Game {
 	private int scorePlayer1;
 	private int scorePlayer2;
 	private Stack<lastTurn> currentTurn = new Stack<lastTurn>();
-//TODO fix break counter!		
-	public int currentBreak;
 
 	public enum Turn{
 		PLAYER1,
@@ -19,6 +17,7 @@ public class Game {
 	private class lastTurn{
 
 		public int currentPoints;
+		public int currentBreak;
 		boolean isItFoul;
 		Turn whoseMoveThisIs;
 		
@@ -34,10 +33,20 @@ public class Game {
 		public lastTurn(int score1, int score2, int cBreak, int cPoints, Turn who, boolean foul){
 			scorePlayer1 += score1;
 			scorePlayer2 += score2;
-			currentBreak += cBreak;
+			currentBreak = cBreak;
 			currentPoints = cPoints;
 			whoseMoveThisIs = who;
 			isItFoul = foul;
+		}
+		
+//		constructor which is used to reseting break on stack during switching players
+		public lastTurn(Turn who){
+			scorePlayer1 += 0;
+			scorePlayer2 += 0;
+			currentBreak = 0;
+			currentPoints = 0;
+			whoseMoveThisIs = who;
+			isItFoul = false;
 		}
 	}
 	
@@ -51,10 +60,10 @@ public class Game {
 		
 		switch (turn){
 			case PLAYER1:
-				currentTurn.push(new lastTurn(points, 0, points, points, turn, false));
+				currentTurn.push(new lastTurn(points, 0, currentTurn.peek().currentBreak + points, points, turn, false));
 				break;
 			case PLAYER2:
-				currentTurn.push(new lastTurn(0, points, points, points, turn, false));
+				currentTurn.push(new lastTurn(0, points, currentTurn.peek().currentBreak + points, points, turn, false));
 				break;
 			case NOBODY:
 				break;
@@ -92,14 +101,10 @@ public class Game {
 		else{
 			switch (currentTurn.peek().whoseMoveThisIs){
 			case PLAYER1:
-				scorePlayer1 -= currentTurn.peek().currentPoints;
-//				currentTurn.pop();
-				currentBreak -= currentTurn.pop().currentPoints;
+				scorePlayer1 -= currentTurn.pop().currentPoints;
 				break;
 			case PLAYER2:
-				scorePlayer2 -= currentTurn.peek().currentPoints;
-//				currentTurn.pop();
-				currentBreak -= currentTurn.pop().currentPoints;
+				scorePlayer2 -= currentTurn.pop().currentPoints;
 				break;
 			case NOBODY:
 				break;
@@ -116,11 +121,11 @@ public class Game {
 	}
 	
 	public int getBreak(){
-		return currentBreak;
+		return currentTurn.peek().currentBreak;
 	}
 	
+//	operation during switching players
 	public void resetBreak(Turn turn){
-		currentTurn.push(new lastTurn(0, 0, -currentBreak, 0, turn, false));
-//		currentBreak = 0;
+		currentTurn.push(new lastTurn(turn));
 	}
 }

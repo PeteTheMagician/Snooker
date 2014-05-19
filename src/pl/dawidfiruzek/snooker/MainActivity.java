@@ -64,6 +64,7 @@ public class MainActivity extends Activity {
 				turn = Turn.PLAYER1;
 				game.resetBreak(turn);
 				updateScore();
+				updateVisualEffects(buttonPlayer1, buttonPlayer2);
 				Log.i(TAG, "player 1 clicked");
 			}
 		});
@@ -72,19 +73,38 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				buttonPlayer2.setText("Turn"); //setVisibility(View.INVISIBLE);
-				buttonPlayer2.setClickable(false);
-				buttonPlayer2.setBackgroundColor(Color.GREEN);
-				buttonPlayer1.setText("Stop"); //setVisibility(View.VISIBLE);
-				buttonPlayer1.setClickable(true);
-				buttonPlayer1.setBackgroundColor(Color.GRAY);
 				
 				turn = Turn.PLAYER2;
 				game.resetBreak(turn);
 				updateScore();
+				updateVisualEffects(buttonPlayer1, buttonPlayer2);
 				Log.i(TAG, "player 2 clicked");
 			}
 		});
+	}
+
+	protected void updateVisualEffects(Button button1, Button button2) {
+		switch(turn){
+		case PLAYER1:
+			button1.setText("Turn"); // setVisibility(View.INVISIBLE);
+			button1.setClickable(false);
+			button1.setBackgroundColor(Color.GREEN);
+			button2.setText("Stop"); //setVisibility(View.VISIBLE);	
+			button2.setClickable(true);
+			button2.setBackgroundColor(Color.GRAY);
+			break;
+		case PLAYER2:
+			button2.setText("Turn"); //setVisibility(View.INVISIBLE);
+			button2.setClickable(false);
+			button2.setBackgroundColor(Color.GREEN);
+			button1.setText("Stop"); //setVisibility(View.VISIBLE);
+			button1.setClickable(true);
+			button1.setBackgroundColor(Color.GRAY);
+			break;
+		default:
+			break;
+		}
+		
 	}
 
 	@Override
@@ -174,9 +194,9 @@ public class MainActivity extends Activity {
 	
 	private void updateScore(){
 		if(turn != Turn.NOBODY){
-		currentBreak.setText(Integer.toString(game.getBreak()));
-		score1.setText(Integer.toString(game.getScorePlayer1()));
-		score2.setText(Integer.toString(game.getScorePlayer2()));
+			currentBreak.setText(Integer.toString(game.getBreak()));
+			score1.setText(Integer.toString(game.getScorePlayer1()));
+			score2.setText(Integer.toString(game.getScorePlayer2()));
 		}
 	}
 	
