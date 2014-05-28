@@ -65,7 +65,9 @@ public class Game {
 			case PLAYER2:
 				currentTurn.push(new lastTurn(0, points, currentTurn.peek().currentBreak + points, points, turn, false));
 				break;
-			case NOBODY:
+//			case NOBODY:
+//				break;
+			default:
 				break;
 		}
 	}
@@ -79,7 +81,7 @@ public class Game {
 		case PLAYER2:
 			currentTurn.push(new lastTurn(points, 0, 0, points, turn, true));
 			break;
-		case NOBODY:
+		default:
 			break;
 		}
 	}
@@ -94,7 +96,7 @@ public class Game {
 			case PLAYER2:
 				scorePlayer1 -= currentTurn.pop().currentPoints;
 				break;
-			case NOBODY:
+			default:
 				break;
 			}
 		}
@@ -106,12 +108,15 @@ public class Game {
 			case PLAYER2:
 				scorePlayer2 -= currentTurn.pop().currentPoints;
 				break;
-			case NOBODY:
+			default:
 				break;
 			}
 		}
 	}
 	
+	public Turn getCurrentTurn(){
+		return currentTurn.peek().whoseMoveThisIs;
+	}
 	public int getScorePlayer1(){
 		return scorePlayer1;
 	}

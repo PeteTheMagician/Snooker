@@ -20,14 +20,15 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 	
 	private Game game = new Game();
-	Game.Turn turn;
+	private Game.Turn turn;
 	private static final String TAG = "MyActivity";
 	private static TextView score1; 
 	private static TextView score2;
 	private static TextView currentBreak;
 	private static TextView name1;
 	private static TextView name2;
-
+	private static Button buttonPlayer1;
+	private static Button buttonPlayer2;
 
 	//PowerManager manager = (PowerManager) getSystemService(Context.POWER_SERVICE);
 	
@@ -39,10 +40,10 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 //		creating buttons
-		final Button buttonPlayer1 = (Button)findViewById(R.id.buttonPlayer1);
-		final Button buttonPlayer2 = (Button)findViewById(R.id.buttonPlayer2);
+		buttonPlayer1 = (Button)findViewById(R.id.buttonPlayer1);
+		buttonPlayer2 = (Button)findViewById(R.id.buttonPlayer2);
 
-//		turn = Turn.NOBODY;
+		turn = Turn.NOBODY;
 		score1 = (TextView) findViewById(R.id.textPlayer1Score);
 		score2 = (TextView) findViewById(R.id.textPlayer2Score);
 		currentBreak = (TextView) findViewById(R.id.textPlayerBreak);
@@ -50,56 +51,54 @@ public class MainActivity extends Activity {
 		name2 = (TextView) findViewById(R.id.textPlayer2Name);
 		
 //		onClick button actions
-		buttonPlayer1.setOnClickListener(new View.OnClickListener() {
-			
+		buttonPlayer1.setOnClickListener(new View.OnClickListener() {			
 			@Override
-			public void onClick(View v) {
-				buttonPlayer1.setText("Turn"); // setVisibility(View.INVISIBLE);
-				buttonPlayer1.setClickable(false);
-				buttonPlayer1.setBackgroundColor(Color.GREEN);
-				buttonPlayer2.setText("Stop"); //setVisibility(View.VISIBLE);	
-				buttonPlayer2.setClickable(true);
-				buttonPlayer2.setBackgroundColor(Color.GRAY);
-				
+			public void onClick(View v) {				
 				turn = Turn.PLAYER1;
 				game.resetBreak(turn);
 				updateScore();
-				updateVisualEffects(buttonPlayer1, buttonPlayer2);
+				updateVisualEffects();
 				Log.i(TAG, "player 1 clicked");
 			}
 		});
 		
 		buttonPlayer2.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
-				
 				turn = Turn.PLAYER2;
 				game.resetBreak(turn);
 				updateScore();
-				updateVisualEffects(buttonPlayer1, buttonPlayer2);
+				updateVisualEffects();
 				Log.i(TAG, "player 2 clicked");
 			}
 		});
 	}
 
-	protected void updateVisualEffects(Button button1, Button button2) {
+	protected void updateVisualEffects() {
 		switch(turn){
 		case PLAYER1:
-			button1.setText("Turn"); // setVisibility(View.INVISIBLE);
-			button1.setClickable(false);
-			button1.setBackgroundColor(Color.GREEN);
-			button2.setText("Stop"); //setVisibility(View.VISIBLE);	
-			button2.setClickable(true);
-			button2.setBackgroundColor(Color.GRAY);
+			buttonPlayer1.setText("Turn"); // setVisibility(View.INVISIBLE);
+			buttonPlayer1.setClickable(false);
+			buttonPlayer1.setBackgroundColor(Color.GREEN);
+			buttonPlayer2.setText("Stop"); //setVisibility(View.VISIBLE);	
+			buttonPlayer2.setClickable(true);
+			buttonPlayer2.setBackgroundColor(Color.GRAY);
 			break;
 		case PLAYER2:
-			button2.setText("Turn"); //setVisibility(View.INVISIBLE);
-			button2.setClickable(false);
-			button2.setBackgroundColor(Color.GREEN);
-			button1.setText("Stop"); //setVisibility(View.VISIBLE);
-			button1.setClickable(true);
-			button1.setBackgroundColor(Color.GRAY);
+			buttonPlayer2.setText("Turn"); //setVisibility(View.INVISIBLE);
+			buttonPlayer2.setClickable(false);
+			buttonPlayer2.setBackgroundColor(Color.GREEN);
+			buttonPlayer1.setText("Stop"); //setVisibility(View.VISIBLE);
+			buttonPlayer1.setClickable(true);
+			buttonPlayer1.setBackgroundColor(Color.GRAY);
+			break;
+		case NOBODY:
+			buttonPlayer1.setText("Stop"); //setVisibility(View.VISIBLE);
+			buttonPlayer1.setClickable(true);
+			buttonPlayer1.setBackgroundColor(Color.GRAY);
+			buttonPlayer2.setText("Stop"); //setVisibility(View.VISIBLE);	
+			buttonPlayer2.setClickable(true);
+			buttonPlayer2.setBackgroundColor(Color.GRAY);
 			break;
 		default:
 			break;
@@ -124,8 +123,13 @@ public class MainActivity extends Activity {
 				game.undo();
 				shortToast("(i) Undo move");
 				updateScore();
+				turn = game.getCurrentTurn();
+				updateVisualEffects();
 				break;
 			case 2:
+//				onStop();
+//				onCreate(null);
+//				shitty code above - trying to reset whole activity or app
 				break;
 		}
 		return true;
