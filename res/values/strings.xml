@@ -29,8 +29,8 @@
     <string name="click_pink">clickPink</string>
     <string name="click_black">clickBlack</string>
     <string name="click_foul">clickFoul</string>
-    <string name="click_player_1">clickChangePlayer1</string>
-    <string name="click_player_2">clickChangePlayer2</string>
+    <string name="click_player_1">clickPlayer1</string>
+    <string name="click_player_2">clickPlayer2</string>
     
     <string name="click_name_1">clickPlayer1Name</string>
 	<string name="click_name_2">clickPlayer2Name</string>

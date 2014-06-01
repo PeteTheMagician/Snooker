@@ -53,6 +53,7 @@
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="@string/click_player_1"
             android:text="@string/game_stop" />
 
         <Button
@@ -60,6 +61,7 @@
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="@string/click_player_2"
             android:text="@string/game_stop" />
     </TableRow>
 
@@ -107,7 +109,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_red"
-            android:text="@string/ball_red" />
+            android:text="@string/ball_red" 
+            android:background="@drawable/button_red"/>
 
         <Button
             android:id="@+id/buttonYellow"
@@ -116,7 +119,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_yellow"
-            android:text="@string/ball_yellow" />
+            android:text="@string/ball_yellow"
+            android:background="@drawable/button_yellow"/>
 
         <Button
             android:id="@+id/buttonGreen"
@@ -125,7 +129,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_green"
-            android:text="@string/ball_green" />
+            android:text="@string/ball_green" 
+            android:background="@drawable/button_green"/>
 
         <Button
             android:id="@+id/buttonBrown"
@@ -134,7 +139,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_brown"
-            android:text="@string/ball_brown" />
+            android:text="@string/ball_brown" 
+            android:background="@drawable/button_brown"/>
 
         <Button
             android:id="@+id/buttonBlue"
@@ -143,7 +149,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_blue"
-            android:text="@string/ball_blue" />
+            android:text="@string/ball_blue" 
+            android:background="@drawable/button_blue"/>
 
         <Button
             android:id="@+id/buttonPink"
@@ -152,7 +159,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_pink"
-            android:text="@string/ball_pink" />
+            android:text="@string/ball_pink" 
+            android:background="@drawable/button_pink"/>
 
         <Button
             android:id="@+id/buttonBlack"
@@ -161,7 +169,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_black"
-            android:text="@string/ball_black" />
+            android:text="@string/ball_black" 
+            android:background="@drawable/button_black"/>
 
         <Button
             android:id="@+id/buttonFoul"

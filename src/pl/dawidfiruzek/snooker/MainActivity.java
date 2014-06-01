@@ -4,6 +4,7 @@ import pl.dawidfiruzek.snooker.Game.Turn;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
@@ -51,27 +52,19 @@ public class MainActivity extends Activity {
 		name2 = (TextView) findViewById(R.id.textPlayer2Name);
 		
 //		onClick button actions
-		buttonPlayer1.setOnClickListener(new View.OnClickListener() {			
-			@Override
-			public void onClick(View v) {				
-				turn = Turn.PLAYER1;
-				game.resetBreak(turn);
-				updateScore();
-				updateVisualEffects();
-				Log.i(TAG, "player 1 clicked");
-			}
-		});
-		
-		buttonPlayer2.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				turn = Turn.PLAYER2;
-				game.resetBreak(turn);
-				updateScore();
-				updateVisualEffects();
-				Log.i(TAG, "player 2 clicked");
-			}
-		});
+//		buttonPlayer1.setOnClickListener(new View.OnClickListener() {			
+//			@Override
+//			public void onClick(View v) {				
+//
+//			}
+//		});
+//		
+//		buttonPlayer2.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//
+//			}
+//		});
 	}
 
 	protected void updateVisualEffects() {
@@ -105,7 +98,16 @@ public class MainActivity extends Activity {
 		}
 		
 	}
-
+	
+	@Override
+	public void onBackPressed(){
+		game.undo();
+		shortToast("(i) Undo move");
+		updateScore();
+		turn = game.getCurrentTurn();
+		updateVisualEffects();
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -115,7 +117,6 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
-//	TODO: fix undoing move - visual effects of buttons are not draw correctly
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch (item.getItemId()) {
@@ -127,9 +128,10 @@ public class MainActivity extends Activity {
 				updateVisualEffects();
 				break;
 			case 2:
-//				onStop();
-//				onCreate(null);
-//				shitty code above - trying to reset whole activity or app
+				Intent intent = getIntent();
+				finish();
+				startActivity(intent);
+//				trying to reset whole activity or app
 				break;
 		}
 		return true;
@@ -210,12 +212,29 @@ public class MainActivity extends Activity {
 		toast.show();
 	}
 	
+//	TODO: remove and add entering player name in start activity!
 	public void clickPlayer1Name(View v){
 		enterName(name1);
 	}
 	
 	public void clickPlayer2Name(View v){
 		enterName(name2);
+	}
+	
+	public void clickPlayer1(View v){
+		turn = Turn.PLAYER1;
+		game.resetBreak(turn);
+		updateScore();
+		updateVisualEffects();
+		Log.i(TAG, "player 1 clicked");
+	}
+	
+	public void clickPlayer2(View v){
+		turn = Turn.PLAYER2;
+		game.resetBreak(turn);
+		updateScore();
+		updateVisualEffects();
+		Log.i(TAG, "player 2 clicked");
 	}
 	
 	public void clickRed(View v){
