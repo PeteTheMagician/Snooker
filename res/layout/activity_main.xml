@@ -54,6 +54,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_player_1"
+            android:background="@drawable/button_player"
             android:text="@string/game_stop" />
 
         <Button
@@ -62,6 +63,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_player_2"
+            android:background="@drawable/button_player"
             android:text="@string/game_stop" />
     </TableRow>
 
@@ -109,7 +111,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_red"
-            android:text="@string/ball_red" 
             android:background="@drawable/button_red"/>
 
         <Button
@@ -119,7 +120,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_yellow"
-            android:text="@string/ball_yellow"
             android:background="@drawable/button_yellow"/>
 
         <Button
@@ -129,7 +129,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_green"
-            android:text="@string/ball_green" 
             android:background="@drawable/button_green"/>
 
         <Button
@@ -139,7 +138,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_brown"
-            android:text="@string/ball_brown" 
             android:background="@drawable/button_brown"/>
 
         <Button
@@ -149,7 +147,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_blue"
-            android:text="@string/ball_blue" 
             android:background="@drawable/button_blue"/>
 
         <Button
@@ -159,7 +156,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_pink"
-            android:text="@string/ball_pink" 
             android:background="@drawable/button_pink"/>
 
         <Button
@@ -169,7 +165,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_black"
-            android:text="@string/ball_black" 
             android:background="@drawable/button_black"/>
 
         <Button
@@ -179,6 +174,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@string/click_foul"
+            android:background="@drawable/button_foul"
             android:text="@string/game_foul" />
     </TableRow>
 

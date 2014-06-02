@@ -30,6 +30,13 @@ public class MainActivity extends Activity {
 	private static TextView name2;
 	private static Button buttonPlayer1;
 	private static Button buttonPlayer2;
+	private final int pointsRed = 1;
+	private final int pointsYellow = 2;
+	private final int pointsGreen = 3;
+	private final int pointsBrown = 4;
+	private final int pointsBlue = 5;
+	private final int pointsPink = 6;
+	private final int pointsBlack = 7;
 
 	//PowerManager manager = (PowerManager) getSystemService(Context.POWER_SERVICE);
 	
@@ -40,7 +47,6 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-//		creating buttons
 		buttonPlayer1 = (Button)findViewById(R.id.buttonPlayer1);
 		buttonPlayer2 = (Button)findViewById(R.id.buttonPlayer2);
 
@@ -51,47 +57,27 @@ public class MainActivity extends Activity {
 		name1 = (TextView) findViewById(R.id.textPlayer1Name);
 		name2 = (TextView) findViewById(R.id.textPlayer2Name);
 		
-//		onClick button actions
-//		buttonPlayer1.setOnClickListener(new View.OnClickListener() {			
-//			@Override
-//			public void onClick(View v) {				
-//
-//			}
-//		});
-//		
-//		buttonPlayer2.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//
-//			}
-//		});
 	}
 
 	protected void updateVisualEffects() {
 		switch(turn){
 		case PLAYER1:
-			buttonPlayer1.setText("Turn"); // setVisibility(View.INVISIBLE);
-			buttonPlayer1.setClickable(false);
-			buttonPlayer1.setBackgroundColor(Color.GREEN);
-			buttonPlayer2.setText("Stop"); //setVisibility(View.VISIBLE);	
-			buttonPlayer2.setClickable(true);
-			buttonPlayer2.setBackgroundColor(Color.GRAY);
+			buttonPlayer1.setText("Turn");
+			buttonPlayer1.setEnabled(false);
+			buttonPlayer2.setText("Stop");	
+			buttonPlayer2.setEnabled(true);
 			break;
 		case PLAYER2:
-			buttonPlayer2.setText("Turn"); //setVisibility(View.INVISIBLE);
-			buttonPlayer2.setClickable(false);
-			buttonPlayer2.setBackgroundColor(Color.GREEN);
-			buttonPlayer1.setText("Stop"); //setVisibility(View.VISIBLE);
-			buttonPlayer1.setClickable(true);
-			buttonPlayer1.setBackgroundColor(Color.GRAY);
+			buttonPlayer2.setText("Turn");
+			buttonPlayer2.setEnabled(false);
+			buttonPlayer1.setText("Stop");
+			buttonPlayer1.setEnabled(true);
 			break;
 		case NOBODY:
-			buttonPlayer1.setText("Stop"); //setVisibility(View.VISIBLE);
-			buttonPlayer1.setClickable(true);
-			buttonPlayer1.setBackgroundColor(Color.GRAY);
-			buttonPlayer2.setText("Stop"); //setVisibility(View.VISIBLE);	
-			buttonPlayer2.setClickable(true);
-			buttonPlayer2.setBackgroundColor(Color.GRAY);
+			buttonPlayer1.setText("Stop");
+			buttonPlayer1.setEnabled(true);
+			buttonPlayer2.setText("Stop");	
+			buttonPlayer2.setEnabled(true);
 			break;
 		default:
 			break;
@@ -108,11 +94,13 @@ public class MainActivity extends Activity {
 		updateVisualEffects();
 	}
 	
+//	TODO: add strings in menu as variables
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		menu.add(1, Menu.FIRST, Menu.FIRST, "back");
-		menu.add(1, Menu.FIRST+1, Menu.FIRST+1, "reset");
+		menu.add(1, Menu.FIRST, Menu.FIRST, "Back");
+		menu.add(1, Menu.FIRST+1, Menu.FIRST+1, "End frame");
+		menu.add(1, Menu.FIRST+2, Menu.FIRST+2, "Reset");
 		//getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
@@ -128,10 +116,11 @@ public class MainActivity extends Activity {
 				updateVisualEffects();
 				break;
 			case 2:
+				break;
+			case 3:
 				Intent intent = getIntent();
 				finish();
 				startActivity(intent);
-//				trying to reset whole activity or app
 				break;
 		}
 		return true;
@@ -167,6 +156,7 @@ public class MainActivity extends Activity {
 		builder.show();
 	}
 	
+//	TODO: Add 4 buttons to choose faul points
 	private void enterFaul(){
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -208,8 +198,10 @@ public class MainActivity extends Activity {
 	}
 	
 	public void shortToast(String string){
-		Toast toast = Toast.makeText(getApplicationContext(), string, Toast.LENGTH_SHORT);
-		toast.show();
+		if(turn != Turn.NOBODY){
+			Toast toast = Toast.makeText(getApplicationContext(), string, Toast.LENGTH_SHORT);
+			toast.show();
+		}
 	}
 	
 //	TODO: remove and add entering player name in start activity!
@@ -239,44 +231,44 @@ public class MainActivity extends Activity {
 	
 	public void clickRed(View v){
 		Log.i(TAG, "red is clicked");		
-		game.addScore(1, turn);
-		shortToast("+1");
+		game.addScore(pointsRed, turn);
+		shortToast("+" + pointsRed);
 		updateScore();
 	}
 	public void clickYellow(View v){
 		Log.i(TAG, "yellow is clicked");		
-		game.addScore(2, turn);
-		shortToast("+2");
+		game.addScore(pointsYellow, turn);
+		shortToast("+" + pointsYellow);
 		updateScore();
 	}
 	public void clickGreen(View v){
 		Log.i(TAG, "green is clicked");
-		game.addScore(3, turn);
-		shortToast("+3");
+		game.addScore(pointsGreen, turn);
+		shortToast("+" + pointsGreen);
 		updateScore();
 	}
 	public void clickBrown(View v){
 		Log.i(TAG, "brown is clicked");
-		game.addScore(4, turn);
-		shortToast("+4");
+		game.addScore(pointsBrown, turn);
+		shortToast("+" + pointsBrown);
 		updateScore();
 	}
 	public void clickBlue(View v){
 		Log.i(TAG, "blue is clicked");
-		game.addScore(5, turn);
-		shortToast("+5");
+		game.addScore(pointsBlue, turn);
+		shortToast("+" + pointsBlue);
 		updateScore();
 	}
 	public void clickPink(View v){
 		Log.i(TAG, "pink is clicked");
-		game.addScore(6, turn);
-		shortToast("+6");
+		game.addScore(pointsPink, turn);
+		shortToast("+" + pointsPink);
 		updateScore();
 	}
 	public void clickBlack(View v){
 		Log.i(TAG, "black is clicked");
-		game.addScore(7, turn);
-		shortToast("+7");
+		game.addScore(pointsBlack, turn);
+		shortToast("+" + pointsBlack);
 		updateScore();
 	}
 	public void clickFoul(View v){
