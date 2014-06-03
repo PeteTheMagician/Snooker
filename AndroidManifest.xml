@@ -14,14 +14,27 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:screenOrientation="landscape"
             android:name="pl.dawidfiruzek.snooker.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/title_activity_main"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="pl.dawidfiruzek.snooker.StartActivity"
+            android:label="@string/title_activity_start"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="pl.dawidfiruzek.snooker.ChoosePlayerActivity"
+            android:label="@string/title_activity_choose_player" 
+            android:screenOrientation="landscape">
         </activity>
     </application>
 

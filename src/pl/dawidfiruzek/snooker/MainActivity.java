@@ -87,11 +87,16 @@ public class MainActivity extends Activity {
 	
 	@Override
 	public void onBackPressed(){
-		game.undo();
-		shortToast("(i) Undo move");
-		updateScore();
-		turn = game.getCurrentTurn();
-		updateVisualEffects();
+		if(turn != Turn.NOBODY){
+			game.undo();
+			shortToast("(i) Undo move");
+			updateScore();
+			turn = game.getCurrentTurn();
+			updateVisualEffects();
+		}
+		else{
+			super.onBackPressed();
+		}
 	}
 	
 //	TODO: add strings in menu as variables

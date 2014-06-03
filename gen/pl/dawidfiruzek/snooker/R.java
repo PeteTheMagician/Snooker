@@ -38,7 +38,10 @@ public final class R {
     }
     public static final class id {
         public static final int TableLayout1=0x7f080000;
-        public static final int action_settings=0x7f080014;
+        public static final int action_settings=0x7f080018;
+        public static final int button1=0x7f080015;
+        public static final int button2=0x7f080016;
+        public static final int button3=0x7f080017;
         public static final int buttonBlack=0x7f080012;
         public static final int buttonBlue=0x7f080010;
         public static final int buttonBrown=0x7f08000f;
@@ -58,12 +61,17 @@ public final class R {
         public static final int textPlayer2Name=0x7f080003;
         public static final int textPlayer2Score=0x7f08000a;
         public static final int textPlayerBreak=0x7f080009;
+        public static final int textView1=0x7f080014;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
+        public static final int activity_choose_player=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int activity_start=0x7f030002;
     }
     public static final class menu {
-        public static final int main=0x7f070000;
+        public static final int choose_player=0x7f070000;
+        public static final int main=0x7f070001;
+        public static final int start=0x7f070002;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -94,6 +102,9 @@ public final class R {
         public static final int game_turn=0x7f050006;
         public static final int hello_world=0x7f050002;
         public static final int player_name=0x7f050003;
+        public static final int title_activity_choose_player=0x7f05001e;
+        public static final int title_activity_main=0x7f05001c;
+        public static final int title_activity_start=0x7f05001d;
     }
     public static final class style {
         /** 
