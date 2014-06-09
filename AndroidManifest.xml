@@ -17,9 +17,6 @@
             android:name="pl.dawidfiruzek.snooker.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="landscape" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
         </activity>
         <activity
             android:name="pl.dawidfiruzek.snooker.StartActivity"
@@ -27,7 +24,6 @@
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
