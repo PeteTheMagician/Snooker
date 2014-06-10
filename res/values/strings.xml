@@ -32,5 +32,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_start">StartActivity</string>
     <string name="title_activity_choose_player">ChoosePlayerActivity</string>
+    <string name="start">START</string>
+    <string name="choose_name">OK</string>
 
 </resources>

@@ -24,8 +24,6 @@
             android:layout_gravity="left"
             android:layout_weight="1"
             android:clickable="true"
-            android:onClick="@string/click_name_1"
-            android:text="@string/player_name"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
@@ -36,8 +34,6 @@
             android:layout_weight="1"
             android:clickable="true"
             android:gravity="right"
-            android:onClick="@string/click_name_2"
-            android:text="@string/player_name"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </TableRow>

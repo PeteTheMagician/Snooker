@@ -2,7 +2,7 @@ package pl.dawidfiruzek.snooker;
 
 import android.app.Activity;
 import android.content.Context;
-import android.hardware.input.InputManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -35,7 +35,6 @@ public class ChoosePlayerActivity extends Activity {
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 				// TODO Auto-generated method stub
 				boolean handled = false;
-//				if((event.getAction() == KeyEvent.ACTION_DOWN) && (actionId == KeyEvent.KEYCODE_ENTER)){
 				if(actionId == EditorInfo.IME_ACTION_DONE){
 					playerName = playerNameText.getText().toString();
 					
@@ -43,7 +42,6 @@ public class ChoosePlayerActivity extends Activity {
 					inputManager.hideSoftInputFromWindow(playerNameText.getWindowToken(), 0);
 					handled = true;
 				}
-//				}
 				return handled;
 			}
 		});
@@ -54,7 +52,11 @@ public class ChoosePlayerActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if(playerName != null){
-					buttonOk.setText(playerName);
+//					buttonOk.setText(playerName);
+					Intent output = new Intent();
+					output.putExtra("RESULT_STRING", playerName);
+					setResult(RESULT_OK, output);
+					finish();
 				}
 			}
 		});

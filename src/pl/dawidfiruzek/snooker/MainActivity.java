@@ -30,6 +30,8 @@ public class MainActivity extends Activity {
 	private TextView name2;
 	private Button buttonPlayer1;
 	private Button buttonPlayer2;
+	private String player1Name;
+	private String player2Name;
 	private final int pointsRed = 1;
 	private final int pointsYellow = 2;
 	private final int pointsGreen = 3;
@@ -46,6 +48,10 @@ public class MainActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);  
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		Intent intent = getIntent();
+		player1Name = intent.getStringExtra("PLAYER1_NAME");
+		player2Name = intent.getStringExtra("PLAYER2_NAME");
 
 		buttonPlayer1 = (Button)findViewById(R.id.buttonPlayer1);
 		buttonPlayer2 = (Button)findViewById(R.id.buttonPlayer2);
@@ -57,6 +63,9 @@ public class MainActivity extends Activity {
 		name1 = (TextView) findViewById(R.id.textPlayer1Name);
 		name2 = (TextView) findViewById(R.id.textPlayer2Name);
 		
+		name1.setText(player1Name);
+		name2.setText(player2Name);
+
 	}
 
 	protected void updateVisualEffects() {
@@ -121,6 +130,7 @@ public class MainActivity extends Activity {
 				updateVisualEffects();
 				break;
 			case 2:
+				finish();
 				break;
 			case 3:
 				Intent intent = getIntent();
@@ -129,36 +139,6 @@ public class MainActivity extends Activity {
 				break;
 		}
 		return true;
-	}
-	
-	private void enterName(final TextView name){
-		
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Please enter your name");
-		
-		final EditText input = new EditText(this);
-		input.setInputType(InputType.TYPE_CLASS_TEXT);
-		builder.setView(input);
-		
-		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				name.setText(input.getText().toString());
-				
-			}
-		});
-			
-		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.cancel();
-				
-			}
-		});
-			
-		builder.show();
 	}
 	
 //	TODO: Add 4 buttons to choose faul points
@@ -207,15 +187,6 @@ public class MainActivity extends Activity {
 			Toast toast = Toast.makeText(getApplicationContext(), string, Toast.LENGTH_SHORT);
 			toast.show();
 		}
-	}
-	
-//	TODO: remove and add entering player name in start activity!
-	public void clickPlayer1Name(View v){
-		enterName(name1);
-	}
-	
-	public void clickPlayer2Name(View v){
-		enterName(name2);
 	}
 	
 	public void clickPlayer1(View v){
