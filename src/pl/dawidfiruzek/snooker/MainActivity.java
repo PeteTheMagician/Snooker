@@ -5,10 +5,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -141,24 +141,29 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
-//	TODO: Add 4 buttons to choose faul points
 	private void enterFaul(){
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Enter faul points");
 		
-		final EditText input = new EditText(this);
-		input.setInputType(InputType.TYPE_CLASS_NUMBER);
-		builder.setView(input);
-		
-		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {				
+		builder.setItems(R.array.foul_points_array, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				
-				if(Integer.parseInt(input.getText().toString()) > 3 & Integer.parseInt(input.getText().toString()) < 8)
-					game.foul(Integer.parseInt(input.getText().toString()), turn);
-				else{
-					shortToast("Incorrect value. Try again");
+				switch(which){
+				case 0:
+					game.foul(4, turn);
+					break;
+				case 1:
+					game.foul(5, turn);
+					break;
+				case 2:
+					game.foul(6, turn);
+					break;
+				case 3:
+					game.foul(7, turn);
+					break;
+				default:
+						break;
 				}
 				updateScore();
 			}
@@ -170,7 +175,6 @@ public class MainActivity extends Activity {
 				dialog.cancel();
 			}
 		});
-		
 		builder.show();
 	}
 	

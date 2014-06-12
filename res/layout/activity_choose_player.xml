@@ -31,6 +31,7 @@
         android:layout_below="@+id/editText1"
         android:layout_marginRight="56dp"
         android:layout_marginTop="59dp"
-        android:text="@string/choose_name" />
+        android:text="@string/choose_name" 
+        android:onClick="clickButtonOk"/>
 
 </RelativeLayout>

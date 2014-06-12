@@ -18,7 +18,6 @@ import android.widget.TextView.OnEditorActionListener;
 public class ChoosePlayerActivity extends Activity {
 
 	private EditText playerNameText;
-	private Button buttonOk;
 	private String playerName;
 	
 	@Override
@@ -27,7 +26,6 @@ public class ChoosePlayerActivity extends Activity {
 		setContentView(R.layout.activity_choose_player);
 		
 		playerNameText = (EditText)findViewById(R.id.editText1);
-		buttonOk = (Button)findViewById(R.id.buttonOk);
 		
 		playerNameText.setOnEditorActionListener(new OnEditorActionListener() {
 			
@@ -44,23 +42,7 @@ public class ChoosePlayerActivity extends Activity {
 				}
 				return handled;
 			}
-		});
-		
-		buttonOk.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if(playerName != null){
-//					buttonOk.setText(playerName);
-					Intent output = new Intent();
-					output.putExtra("RESULT_STRING", playerName);
-					setResult(RESULT_OK, output);
-					finish();
-				}
-			}
-		});
-		
+		});		
 		
 	}
 
@@ -70,5 +52,15 @@ public class ChoosePlayerActivity extends Activity {
 		getMenuInflater().inflate(R.menu.choose_player, menu);
 		return true;
 	}
+	
+	public void clickButtonOk(View v){
+		if(playerName != null){
+			Intent output = new Intent();
+			output.putExtra("RESULT_STRING", playerName);
+			setResult(RESULT_OK, output);
+			finish();
+		}
+	}
+	
 
 }
