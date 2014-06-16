@@ -26,8 +26,8 @@ public class MainActivity extends Activity {
 	private TextView score1; 
 	private TextView score2;
 	private TextView currentBreak;
-	private TextView name1;
-	private TextView name2;
+//	private TextView name1;
+//	private TextView name2;
 	private Button buttonPlayer1;
 	private Button buttonPlayer2;
 	private String player1Name;
@@ -39,6 +39,10 @@ public class MainActivity extends Activity {
 	private final int pointsBlue = 5;
 	private final int pointsPink = 6;
 	private final int pointsBlack = 7;
+	private final int pointsFoulFour = 4;
+	private int pointsFoulFive = 5;
+	private int pointsFoulSix = 6;
+	private int pointsFoulSeven = 7;
 
 	//PowerManager manager = (PowerManager) getSystemService(Context.POWER_SERVICE);
 	
@@ -60,32 +64,26 @@ public class MainActivity extends Activity {
 		score1 = (TextView) findViewById(R.id.textPlayer1Score);
 		score2 = (TextView) findViewById(R.id.textPlayer2Score);
 		currentBreak = (TextView) findViewById(R.id.textPlayerBreak);
-		name1 = (TextView) findViewById(R.id.textPlayer1Name);
-		name2 = (TextView) findViewById(R.id.textPlayer2Name);
+//		name1 = (TextView) findViewById(R.id.textPlayer1Name);
+//		name2 = (TextView) findViewById(R.id.textPlayer2Name);
 		
-		name1.setText(player1Name);
-		name2.setText(player2Name);
+		buttonPlayer1.setText(player1Name);
+		buttonPlayer2.setText(player2Name);
 
 	}
 
 	protected void updateVisualEffects() {
 		switch(turn){
 		case PLAYER1:
-			buttonPlayer1.setText("Turn");
 			buttonPlayer1.setEnabled(false);
-			buttonPlayer2.setText("Stop");	
 			buttonPlayer2.setEnabled(true);
 			break;
 		case PLAYER2:
-			buttonPlayer2.setText("Turn");
 			buttonPlayer2.setEnabled(false);
-			buttonPlayer1.setText("Stop");
 			buttonPlayer1.setEnabled(true);
 			break;
 		case NOBODY:
-			buttonPlayer1.setText("Stop");
 			buttonPlayer1.setEnabled(true);
-			buttonPlayer2.setText("Stop");	
 			buttonPlayer2.setEnabled(true);
 			break;
 		default:
@@ -108,19 +106,20 @@ public class MainActivity extends Activity {
 		}
 	}
 	
-//	TODO: add strings in menu as variables
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		menu.add(1, Menu.FIRST, Menu.FIRST, "Back");
-		menu.add(1, Menu.FIRST+1, Menu.FIRST+1, "End frame");
-		menu.add(1, Menu.FIRST+2, Menu.FIRST+2, "Reset");
+		menu.add(1, Menu.FIRST, Menu.FIRST, R.string.game_back);
+		menu.add(1, Menu.FIRST+1, Menu.FIRST+1, R.string.game_end_frame);
+		menu.add(1, Menu.FIRST+2, Menu.FIRST+2, R.string.game_end_game);
+//		menu.add(1, Menu.FIRST+3, Menu.FIRST+3, R.string.game_reset_frame);
 		//getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
+		Intent intent = getIntent();
 		switch (item.getItemId()) {
 			case 1:
 				game.undo();
@@ -131,12 +130,17 @@ public class MainActivity extends Activity {
 				break;
 			case 2:
 				finish();
-				break;
-			case 3:
-				Intent intent = getIntent();
-				finish();
+//				add +1 to player's frame score
 				startActivity(intent);
 				break;
+			case 3:
+				finish();
+				break;
+//			case 4:
+//				finish();
+////				e.g. adding frame score to intent
+//				startActivity(intent);
+//				break;
 		}
 		return true;
 	}
@@ -144,23 +148,23 @@ public class MainActivity extends Activity {
 	private void enterFaul(){
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Enter faul points");
+		builder.setTitle(R.string.title_fouls);
 		
 		builder.setItems(R.array.foul_points_array, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				switch(which){
 				case 0:
-					game.foul(4, turn);
+					game.foul(pointsFoulFour, turn);
 					break;
 				case 1:
-					game.foul(5, turn);
+					game.foul(pointsFoulFive, turn);
 					break;
 				case 2:
-					game.foul(6, turn);
+					game.foul(pointsFoulSix, turn);
 					break;
 				case 3:
-					game.foul(7, turn);
+					game.foul(pointsFoulSeven, turn);
 					break;
 				default:
 						break;
@@ -169,7 +173,7 @@ public class MainActivity extends Activity {
 			}
 		});
 		
-		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {			
+		builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel();

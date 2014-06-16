@@ -27,8 +27,7 @@ public class ChoosePlayerActivity extends Activity {
 		
 		playerNameText = (EditText)findViewById(R.id.editText1);
 		
-		playerNameText.setOnEditorActionListener(new OnEditorActionListener() {
-			
+		playerNameText.setOnEditorActionListener(new OnEditorActionListener() {		
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 				// TODO Auto-generated method stub

@@ -6,7 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".StartActivity" >
+    tools:context=".StartActivity" 
+    android:background="@android:drawable/screen_background_dark_transparent">
 
     <Button
         android:id="@+id/buttonChoosePlayer1Name"
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="53dp"
         android:layout_marginTop="33dp"
-        android:onClick="clickButtonPlayer1"/>
+        android:onClick="@string/click_player_1_name"/>
 
     <Button
         android:id="@+id/buttonChoosePlayer2Name"
@@ -23,7 +24,7 @@
         android:layout_alignBottom="@+id/buttonChoosePlayer1Name"
         android:layout_alignParentRight="true"
         android:layout_marginRight="133dp"
-        android:onClick="clickButtonPlayer2"/>
+        android:onClick="@string/click_player_2_name"/>
         
 
     <Button
@@ -35,6 +36,6 @@
         android:layout_marginRight="41dp"
         android:layout_toLeftOf="@+id/buttonChoosePlayer2Name"
         android:text="@string/start" 
-        android:onClick="clickButtonStart"/>
+        android:onClick="@string/click_button_start_game"/>
 
 </RelativeLayout>

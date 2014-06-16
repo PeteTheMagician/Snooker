@@ -52,12 +52,12 @@ public class StartActivity extends Activity {
 		}
 	}
 	
-	public void clickButtonPlayer1(View v){
+	public void clickButtonPlayer1Name(View v){
 		Intent intent = new Intent(this, ChoosePlayerActivity.class);
 		startActivityForResult(intent, PLAYER1_NAME_REQUEST);
 	}
 	
-	public void clickButtonPlayer2(View v){
+	public void clickButtonPlayer2Name(View v){
 		Intent intent = new Intent(this, ChoosePlayerActivity.class);
 		startActivityForResult(intent, PLAYER2_NAME_REQUEST);
 	}
