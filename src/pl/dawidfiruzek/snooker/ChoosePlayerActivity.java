@@ -25,7 +25,7 @@ public class ChoosePlayerActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_player);
 		
-		playerNameText = (EditText)findViewById(R.id.editText1);
+		playerNameText = (EditText)findViewById(R.id.editTextPlayerName);
 		
 		playerNameText.setOnEditorActionListener(new OnEditorActionListener() {		
 			@Override

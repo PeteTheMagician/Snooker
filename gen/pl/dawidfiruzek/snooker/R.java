@@ -40,30 +40,34 @@ public final class R {
         public static final int ic_launcher=0x7f02000d;
     }
     public static final class id {
-        public static final int TableLayout1=0x7f090002;
-        public static final int action_settings=0x7f090018;
-        public static final int buttonBlack=0x7f090013;
-        public static final int buttonBlue=0x7f090011;
-        public static final int buttonBrown=0x7f090010;
-        public static final int buttonChoosePlayer1Name=0x7f090015;
-        public static final int buttonChoosePlayer2Name=0x7f090016;
-        public static final int buttonFoul=0x7f090014;
-        public static final int buttonGreen=0x7f09000f;
+        public static final int RelativeLayoutStart1=0x7f090017;
+        public static final int RelativeLayoutStart2=0x7f09001a;
+        public static final int TableLayoutMain1=0x7f090002;
+        public static final int TableLayoutStart1=0x7f090016;
+        public static final int action_settings=0x7f09001c;
+        public static final int buttonBlack=0x7f090014;
+        public static final int buttonBlue=0x7f090012;
+        public static final int buttonBrown=0x7f090011;
+        public static final int buttonChoosePlayer1Name=0x7f090018;
+        public static final int buttonChoosePlayer2Name=0x7f090019;
+        public static final int buttonFoul=0x7f090015;
+        public static final int buttonGreen=0x7f090010;
         public static final int buttonOk=0x7f090001;
-        public static final int buttonPink=0x7f090012;
+        public static final int buttonPink=0x7f090013;
         public static final int buttonPlayer1=0x7f090006;
-        public static final int buttonPlayer2=0x7f090007;
-        public static final int buttonRed=0x7f09000d;
-        public static final int buttonStartGame=0x7f090017;
-        public static final int buttonYellow=0x7f09000e;
-        public static final int editText1=0x7f090000;
-        public static final int tableRow1=0x7f090003;
-        public static final int tableRow2=0x7f090005;
-        public static final int tableRow3=0x7f090008;
-        public static final int tableRow4=0x7f09000c;
-        public static final int textPlayer1Score=0x7f090009;
-        public static final int textPlayer2Score=0x7f09000b;
-        public static final int textPlayerBreak=0x7f09000a;
+        public static final int buttonPlayer2=0x7f090008;
+        public static final int buttonRed=0x7f09000e;
+        public static final int buttonStartGame=0x7f09001b;
+        public static final int buttonYellow=0x7f09000f;
+        public static final int editTextPlayerName=0x7f090000;
+        public static final int tableRowMain1=0x7f090003;
+        public static final int tableRowMain2=0x7f090005;
+        public static final int tableRowMain3=0x7f090009;
+        public static final int tableRowMain4=0x7f09000d;
+        public static final int textFrameScore=0x7f090007;
+        public static final int textPlayer1Score=0x7f09000a;
+        public static final int textPlayer2Score=0x7f09000c;
+        public static final int textPlayerBreak=0x7f09000b;
         public static final int textStatusBar=0x7f090004;
     }
     public static final class layout {

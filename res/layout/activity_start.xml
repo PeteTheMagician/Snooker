@@ -1,41 +1,53 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/TableLayoutStart1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:drawable/screen_background_dark_transparent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".StartActivity" 
-    android:background="@android:drawable/screen_background_dark_transparent">
+    tools:context=".StartActivity" >
 
-    <Button
-        android:id="@+id/buttonChoosePlayer1Name"
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutStart1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.6" >
+
+        <Button
+            android:id="@+id/buttonChoosePlayer1Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="50dp"
+			android:layout_centerVertical="true"
+            android:onClick="@string/click_player_1_name" />
+
+        <Button
+            android:id="@+id/buttonChoosePlayer2Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50dp"
+            android:layout_centerVertical="true"
+            android:onClick="@string/click_player_2_name" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutStart2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="53dp"
-        android:layout_marginTop="33dp"
-        android:onClick="@string/click_player_1_name"/>
+        android:layout_weight="0.4" >
 
-    <Button
-        android:id="@+id/buttonChoosePlayer2Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/buttonChoosePlayer1Name"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="133dp"
-        android:onClick="@string/click_player_2_name"/>
-        
+        <Button
+            android:id="@+id/buttonStartGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:onClick="@string/click_button_start_game"
+            android:text="@string/start" />
+    </RelativeLayout>
 
-    <Button
-        android:id="@+id/buttonStartGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="32dp"
-        android:layout_marginRight="41dp"
-        android:layout_toLeftOf="@+id/buttonChoosePlayer2Name"
-        android:text="@string/start" 
-        android:onClick="@string/click_button_start_game"/>
-
-</RelativeLayout>
+</TableLayout>

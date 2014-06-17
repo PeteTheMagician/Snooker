@@ -1,28 +1,27 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/TableLayout1"
+    android:id="@+id/TableLayoutMain1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:stretchColumns="*"
     android:keepScreenOn="true"
     tools:context=".MainActivity" 
     android:background="@android:drawable/screen_background_dark_transparent">
 
     <TableRow
-        android:id="@+id/tableRow1"
+        android:id="@+id/tableRowMain1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0.16" >
 
         <TextView
             android:id="@+id/textStatusBar"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:gravity="left"
             android:layout_weight="1"
             android:text="there will be status bar"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -30,7 +29,7 @@
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow2"
+        android:id="@+id/tableRowMain2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
         android:layout_weight="0.52">
@@ -39,17 +38,27 @@
             android:id="@+id/buttonPlayer1"
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.45"
             android:onClick="@string/click_button_player_1"
             android:background="@drawable/button_player"
             android:textStyle="bold"
             android:textColor="@android:color/primary_text_light" />
+        
+		<TextView
+            android:id="@+id/textFrameScore"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="0.1"
+            android:text="0:0"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+                
 
         <Button
             android:id="@+id/buttonPlayer2"
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.45"
             android:onClick="@string/click_button_player_2"
             android:background="@drawable/button_player"
             android:textStyle="bold"
@@ -57,38 +66,41 @@
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow3"
+        android:id="@+id/tableRowMain3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0.16" >
 
         <TextView
             android:id="@+id/textPlayer1Score"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:gravity="left"
             android:text="@string/game_score"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
             android:id="@+id/textPlayerBreak"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/game_break" />
 
         <TextView
             android:id="@+id/textPlayer2Score"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:gravity="right"
             android:text="@string/game_score"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow4"
+        android:id="@+id/tableRowMain4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
         android:layout_weight="0.16">
