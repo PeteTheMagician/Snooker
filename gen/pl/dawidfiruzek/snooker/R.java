@@ -27,21 +27,21 @@ public final class R {
         public static final int button_black=0x7f020000;
         public static final int button_blue=0x7f020001;
         public static final int button_brown=0x7f020002;
-        public static final int button_clicked=0x7f020003;
+        public static final int button_default=0x7f020003;
         public static final int button_foul=0x7f020004;
-        public static final int button_foul_clicked=0x7f020005;
-        public static final int button_green=0x7f020006;
+        public static final int button_green=0x7f020005;
+        public static final int button_oval=0x7f020006;
         public static final int button_pink=0x7f020007;
         public static final int button_player=0x7f020008;
-        public static final int button_player_clicked=0x7f020009;
-        public static final int button_player_pressed=0x7f02000a;
-        public static final int button_red=0x7f02000b;
-        public static final int button_yellow=0x7f02000c;
-        public static final int ic_launcher=0x7f02000d;
+        public static final int button_rectangle_green=0x7f020009;
+        public static final int button_rectangle_grey=0x7f02000a;
+        public static final int button_rectangle_purple=0x7f02000b;
+        public static final int button_rectangle_yellow=0x7f02000c;
+        public static final int button_red=0x7f02000d;
+        public static final int button_yellow=0x7f02000e;
+        public static final int ic_launcher=0x7f02000f;
     }
     public static final class id {
-        public static final int RelativeLayoutStart1=0x7f090017;
-        public static final int RelativeLayoutStart2=0x7f09001a;
         public static final int TableLayoutMain1=0x7f090002;
         public static final int TableLayoutStart1=0x7f090016;
         public static final int action_settings=0x7f09001c;
@@ -64,6 +64,8 @@ public final class R {
         public static final int tableRowMain2=0x7f090005;
         public static final int tableRowMain3=0x7f090009;
         public static final int tableRowMain4=0x7f09000d;
+        public static final int tableRowStart1=0x7f090017;
+        public static final int tableRowStart2=0x7f09001a;
         public static final int textFrameScore=0x7f090007;
         public static final int textPlayer1Score=0x7f09000a;
         public static final int textPlayer2Score=0x7f09000c;

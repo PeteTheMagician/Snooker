@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:state_pressed="true" android:drawable="@drawable/button_foul_clicked">
+    <item android:state_pressed="true" android:drawable="@drawable/button_rectangle_grey">
     </item>
-    <item>
-        <shape android:shape="rectangle">
-               <corners android:radius="10dp"/>
-			    <gradient 
-			        android:startColor="#000"
-				    android:centerColor="#5f007f"
-				    android:endColor="#fff"
-					android:centerX="0.10"
-					android:centerY="0.70"
-				    android:angle="90"/>
-			    <stroke android:width="4sp" android:color="#636363"/>
-        </shape>
+    <item android:drawable="@drawable/button_rectangle_purple">
     </item>
 </selector>

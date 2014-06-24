@@ -10,44 +10,50 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".StartActivity" >
 
-    <RelativeLayout
-        android:id="@+id/RelativeLayoutStart1"
-        android:layout_width="match_parent"
+    <TableRow
+        android:id="@+id/tableRowStart1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0.6" >
 
         <Button
             android:id="@+id/buttonChoosePlayer1Name"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
             android:layout_marginLeft="50dp"
-			android:layout_centerVertical="true"
+            android:layout_gravity="bottom"
+			android:background="@drawable/button_default"
             android:onClick="@string/click_player_1_name" />
 
         <Button
             android:id="@+id/buttonChoosePlayer2Name"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_weight="1"
             android:layout_marginRight="50dp"
-            android:layout_centerVertical="true"
+            android:layout_gravity="bottom"
+            android:background="@drawable/button_default"
             android:onClick="@string/click_player_2_name" />
-    </RelativeLayout>
+    </TableRow>
 
-    <RelativeLayout
-        android:id="@+id/RelativeLayoutStart2"
+    <TableRow
+        android:id="@+id/tableRowStart2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0.4" >
 
         <Button
             android:id="@+id/buttonStartGame"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:layout_marginLeft="150dp"
+            android:layout_marginRight="150dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/button_default"
             android:onClick="@string/click_button_start_game"
             android:text="@string/start" />
-    </RelativeLayout>
+    </TableRow>
 
 </TableLayout>
