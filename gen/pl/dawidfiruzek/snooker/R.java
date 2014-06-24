@@ -30,7 +30,7 @@ public final class R {
         public static final int button_default=0x7f020003;
         public static final int button_foul=0x7f020004;
         public static final int button_green=0x7f020005;
-        public static final int button_oval=0x7f020006;
+        public static final int button_oval_grey=0x7f020006;
         public static final int button_pink=0x7f020007;
         public static final int button_player=0x7f020008;
         public static final int button_rectangle_green=0x7f020009;
