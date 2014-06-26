@@ -26,12 +26,13 @@ public class MainActivity extends Activity {
 	private TextView score1; 
 	private TextView score2;
 	private TextView currentBreak;
-//	private TextView name1;
-//	private TextView name2;
+	private TextView frameScore;
 	private Button buttonPlayer1;
 	private Button buttonPlayer2;
 	private String player1Name;
 	private String player2Name;
+	private int player1FrameScore;
+	private int player2FrameScore;
 	private final int pointsRed = 1;
 	private final int pointsYellow = 2;
 	private final int pointsGreen = 3;
@@ -43,8 +44,6 @@ public class MainActivity extends Activity {
 	private int pointsFoulFive = 5;
 	private int pointsFoulSix = 6;
 	private int pointsFoulSeven = 7;
-
-	//PowerManager manager = (PowerManager) getSystemService(Context.POWER_SERVICE);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +55,8 @@ public class MainActivity extends Activity {
 		Intent intent = getIntent();
 		player1Name = intent.getStringExtra("PLAYER1_NAME");
 		player2Name = intent.getStringExtra("PLAYER2_NAME");
+		player1FrameScore = intent.getIntExtra("PLAYER1_FRAME_SCORE", 0);
+		player2FrameScore = intent.getIntExtra("PLAYER2_FRAME_SCORE", 0);
 
 		buttonPlayer1 = (Button)findViewById(R.id.buttonPlayer1);
 		buttonPlayer2 = (Button)findViewById(R.id.buttonPlayer2);
@@ -64,11 +65,12 @@ public class MainActivity extends Activity {
 		score1 = (TextView) findViewById(R.id.textPlayer1Score);
 		score2 = (TextView) findViewById(R.id.textPlayer2Score);
 		currentBreak = (TextView) findViewById(R.id.textPlayerBreak);
-//		name1 = (TextView) findViewById(R.id.textPlayer1Name);
-//		name2 = (TextView) findViewById(R.id.textPlayer2Name);
+		frameScore = (TextView) findViewById(R.id.textFrameScore);
 		
 		buttonPlayer1.setText(player1Name);
 		buttonPlayer2.setText(player2Name);
+		
+		frameScore.setText(player1FrameScore + " : " + player2FrameScore);
 
 	}
 
@@ -112,7 +114,7 @@ public class MainActivity extends Activity {
 		menu.add(1, Menu.FIRST, Menu.FIRST, R.string.game_back);
 		menu.add(1, Menu.FIRST+1, Menu.FIRST+1, R.string.game_end_frame);
 		menu.add(1, Menu.FIRST+2, Menu.FIRST+2, R.string.game_end_game);
-//		menu.add(1, Menu.FIRST+3, Menu.FIRST+3, R.string.game_reset_frame);
+		menu.add(1, Menu.FIRST+3, Menu.FIRST+3, R.string.game_reset_frame);
 		//getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
@@ -131,16 +133,25 @@ public class MainActivity extends Activity {
 			case 2:
 				finish();
 //				add +1 to player's frame score
+				if(game.getScorePlayer1() > game.getScorePlayer2()){
+					intent.putExtra("PLAYER1_FRAME_SCORE", ++player1FrameScore);
+				}
+				else if(game.getScorePlayer1() < game.getScorePlayer2()){
+					intent.putExtra("PLAYER2_FRAME_SCORE", ++player2FrameScore);
+				}
+//				else{
+//					there is no reason for executing else, because previous values are from existing intent :)
+//				}					
 				startActivity(intent);
 				break;
 			case 3:
 				finish();
+//				after creating db we have to write some values there
 				break;
-//			case 4:
-//				finish();
-////				e.g. adding frame score to intent
-//				startActivity(intent);
-//				break;
+			case 4:
+				finish();
+				startActivity(intent);
+				break;
 		}
 		return true;
 	}

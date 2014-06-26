@@ -37,8 +37,20 @@ public class MainActivityTest {
     public void setup()
     {
         activity = Robolectric.buildActivity(MainActivity.class).create().get();
+        textStatusBar = (TextView) activity.findViewById(R.id.textStatusBar);
         buttonPlayer1 = (Button) activity.findViewById(R.id.buttonPlayer1);
+        buttonPlayer2 = (Button) activity.findViewById(R.id.buttonPlayer2);
+        textScorePlayer1 = (TextView) activity.findViewById(R.id.textPlayer1Score);
         textBreak = (TextView) activity.findViewById(R.id.textPlayerBreak);
+        textScorePlayer2 = (TextView) activity.findViewById(R.id.textPlayer2Score);
+        buttonRed = (Button) activity.findViewById(R.id.buttonRed);
+        buttonYellow = (Button) activity.findViewById(R.id.buttonYellow);
+        buttonGreen = (Button) activity.findViewById(R.id.buttonGreen);
+        buttonBrown = (Button) activity.findViewById(R.id.buttonBrown);
+        buttonBlue = (Button) activity.findViewById(R.id.buttonBlue);
+        buttonPink = (Button) activity.findViewById(R.id.buttonPink);
+        buttonBlack = (Button) activity.findViewById(R.id.buttonBlack);
+        buttonFoul = (Button) activity.findViewById(R.id.buttonFoul);
     }
 
     @Test

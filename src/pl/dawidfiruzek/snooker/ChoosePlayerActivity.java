@@ -14,18 +14,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 public class ChoosePlayerActivity extends Activity {
 
 	private EditText playerNameText;
 	private String playerName;
+	private String warning;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_player);
 		
+		
 		playerNameText = (EditText)findViewById(R.id.editTextPlayerName);
+		warning = getResources().getString(R.string.warning);
 		
 		playerNameText.setOnEditorActionListener(new OnEditorActionListener() {		
 			@Override
@@ -58,6 +62,10 @@ public class ChoosePlayerActivity extends Activity {
 			output.putExtra("RESULT_STRING", playerName);
 			setResult(RESULT_OK, output);
 			finish();
+		}
+		else{
+			Toast toast = Toast.makeText(getApplicationContext(), warning, Toast.LENGTH_LONG);
+			toast.show();
 		}
 	}
 	

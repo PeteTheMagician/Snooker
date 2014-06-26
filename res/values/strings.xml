@@ -16,6 +16,7 @@
     
     <string name="click_button_ok">clickButtonOk</string>    
     <string name="choose_name">OK</string>
+    <string name="warning">Please enter player name and after click "DONE" button on your keyboard</string>
     
     <string name="game_break">Break</string>
     <string name="game_score">Score</string>
