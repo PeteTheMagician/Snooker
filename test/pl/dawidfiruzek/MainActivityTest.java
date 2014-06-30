@@ -1,8 +1,6 @@
 package pl.dawidfiruzek;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,21 +15,22 @@ import android.widget.TextView;
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityTest {
 	
-	MainActivity activity;
-	TextView textStatusBar;
-	Button buttonPlayer1;
-	Button buttonPlayer2;
-	TextView textScorePlayer1;
-	TextView textBreak;
-	TextView textScorePlayer2;
-	Button buttonRed;
-	Button buttonYellow;
-	Button buttonGreen;
-	Button buttonBrown;
-	Button buttonBlue;
-	Button buttonPink;
-	Button buttonBlack;
-	Button buttonFoul;
+	private MainActivity activity;
+	private TextView textStatusBar;
+	private Button buttonPlayer1;
+	private TextView textFrameScore;
+	private Button buttonPlayer2;
+	private TextView textScorePlayer1;
+	private TextView textBreak;
+	private TextView textScorePlayer2;
+	private Button buttonRed;
+	private Button buttonYellow;
+	private Button buttonGreen;
+	private Button buttonBrown;
+	private Button buttonBlue;
+	private Button buttonPink;
+	private Button buttonBlack;
+	private Button buttonFoul;
 
     @Before
     public void setup()
@@ -39,6 +38,7 @@ public class MainActivityTest {
         activity = Robolectric.buildActivity(MainActivity.class).create().get();
         textStatusBar = (TextView) activity.findViewById(R.id.textStatusBar);
         buttonPlayer1 = (Button) activity.findViewById(R.id.buttonPlayer1);
+        textFrameScore = (TextView) activity.findViewById(R.id.textFrameScore);
         buttonPlayer2 = (Button) activity.findViewById(R.id.buttonPlayer2);
         textScorePlayer1 = (TextView) activity.findViewById(R.id.textPlayer1Score);
         textBreak = (TextView) activity.findViewById(R.id.textPlayerBreak);
@@ -54,13 +54,89 @@ public class MainActivityTest {
     }
 
     @Test
-    public void shouldHaveHappySmiles() throws Exception 
-    {
-        String testText = textBreak.getText().toString();
-        assertThat(testText, equalTo("Break"));
+    public void checkStartParameters() throws Exception{
+    	
+    	Assert.assertEquals(textStatusBar.getText(), "there will be status bar");
+    	
+    	Assert.assertTrue(buttonPlayer1.isClickable());
+    	Assert.assertTrue(buttonPlayer1.isEnabled());
+    	Assert.assertTrue(buttonPlayer2.isClickable());
+    	Assert.assertTrue(buttonPlayer2.isEnabled());
+    	
+    	Assert.assertEquals(buttonPlayer1.getText(), "");
+    	Assert.assertEquals(buttonPlayer2.getText(), "");
+    	
+    	Assert.assertEquals(textFrameScore.getText(), "0 : 0");
+    	
+    	Assert.assertEquals(textScorePlayer1.getText(), "Score");
+    	Assert.assertEquals(textScorePlayer2.getText(), "Score");
+    	
+    	Assert.assertEquals(textBreak.getText(), "Break");
+    	     
+    	Assert.assertTrue(buttonRed.isClickable());
+        Assert.assertTrue(buttonRed.isEnabled());
+        Assert.assertTrue(buttonYellow.isClickable());
+        Assert.assertTrue(buttonYellow.isEnabled());
+        Assert.assertTrue(buttonGreen.isClickable());
+        Assert.assertTrue(buttonGreen.isEnabled());
+        Assert.assertTrue(buttonBrown.isClickable());
+        Assert.assertTrue(buttonBrown.isEnabled());
+        Assert.assertTrue(buttonBlue.isClickable());
+        Assert.assertTrue(buttonBlue.isEnabled());
+        Assert.assertTrue(buttonPink.isClickable());
+        Assert.assertTrue(buttonPink.isEnabled());
+        Assert.assertTrue(buttonBlack.isClickable());
+        Assert.assertTrue(buttonBlack.isEnabled());
+        Assert.assertTrue(buttonFoul.isClickable());
+        Assert.assertTrue(buttonFoul.isEnabled());
         
-        activity.clickPlayer1(null);
-        testText = textBreak.getText().toString();
-        assertThat(testText, equalTo("0"));
+    }
+    
+    @Test
+    public void checkPlayersScore() throws Exception{
+    	
+		buttonPlayer1.performClick();
+		Assert.assertFalse(buttonPlayer1.isEnabled());
+		Assert.assertTrue(buttonPlayer2.isEnabled());
+
+		Assert.assertEquals(textScorePlayer1.getText(), "0");
+		Assert.assertEquals(textScorePlayer2.getText(), "0");
+		Assert.assertEquals(textBreak.getText(), "0");
+
+		clickAllColors();
+		
+		Assert.assertEquals(textScorePlayer1.getText(), "28");
+		Assert.assertEquals(textScorePlayer2.getText(), "0");
+		Assert.assertEquals(textBreak.getText(), "28");
+		
+		buttonPlayer2.performClick();
+		Assert.assertFalse(buttonPlayer2.isEnabled());
+		Assert.assertTrue(buttonPlayer1.isEnabled());
+		
+		Assert.assertEquals(textScorePlayer1.getText(), "28");
+		Assert.assertEquals(textScorePlayer2.getText(), "0");
+		Assert.assertEquals(textBreak.getText(), "0");
+		
+		clickAllColors();
+		
+		Assert.assertEquals(textScorePlayer1.getText(), "28");
+		Assert.assertEquals(textScorePlayer2.getText(), "28");
+		Assert.assertEquals(textBreak.getText(), "28");
+		
+		buttonPlayer1.performClick();
+		Assert.assertEquals(textScorePlayer1.getText(), "28");
+		Assert.assertEquals(textScorePlayer2.getText(), "28");
+		Assert.assertEquals(textBreak.getText(), "0");		
+				
+    }
+    
+    public void clickAllColors(){
+    	buttonRed.performClick();
+		buttonYellow.performClick();
+		buttonGreen.performClick();
+		buttonBrown.performClick();
+		buttonBlue.performClick();
+		buttonPink.performClick();
+		buttonBlack.performClick();
     }
 }
