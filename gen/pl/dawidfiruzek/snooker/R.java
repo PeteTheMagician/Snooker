@@ -8,8 +8,12 @@
 package pl.dawidfiruzek.snooker;
 
 public final class R {
+    public static final class anim {
+        public static final int status_bar_from_right_animation=0x7f040000;
+        public static final int status_bar_to_the_left_animation=0x7f040001;
+    }
     public static final class array {
-        public static final int foul_points_array=0x7f040000;
+        public static final int foul_points_array=0x7f050000;
     }
     public static final class attr {
     }
@@ -20,8 +24,8 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
         public static final int button_black=0x7f020000;
@@ -42,35 +46,35 @@ public final class R {
         public static final int ic_launcher=0x7f02000f;
     }
     public static final class id {
-        public static final int TableLayoutMain1=0x7f090002;
-        public static final int TableLayoutStart1=0x7f090016;
-        public static final int action_settings=0x7f09001c;
-        public static final int buttonBlack=0x7f090014;
-        public static final int buttonBlue=0x7f090012;
-        public static final int buttonBrown=0x7f090011;
-        public static final int buttonChoosePlayer1Name=0x7f090018;
-        public static final int buttonChoosePlayer2Name=0x7f090019;
-        public static final int buttonFoul=0x7f090015;
-        public static final int buttonGreen=0x7f090010;
-        public static final int buttonOk=0x7f090001;
-        public static final int buttonPink=0x7f090013;
-        public static final int buttonPlayer1=0x7f090006;
-        public static final int buttonPlayer2=0x7f090008;
-        public static final int buttonRed=0x7f09000e;
-        public static final int buttonStartGame=0x7f09001b;
-        public static final int buttonYellow=0x7f09000f;
-        public static final int editTextPlayerName=0x7f090000;
-        public static final int tableRowMain1=0x7f090003;
-        public static final int tableRowMain2=0x7f090005;
-        public static final int tableRowMain3=0x7f090009;
-        public static final int tableRowMain4=0x7f09000d;
-        public static final int tableRowStart1=0x7f090017;
-        public static final int tableRowStart2=0x7f09001a;
-        public static final int textFrameScore=0x7f090007;
-        public static final int textPlayer1Score=0x7f09000a;
-        public static final int textPlayer2Score=0x7f09000c;
-        public static final int textPlayerBreak=0x7f09000b;
-        public static final int textStatusBar=0x7f090004;
+        public static final int TableLayoutMain1=0x7f0a0002;
+        public static final int TableLayoutStart1=0x7f0a0016;
+        public static final int action_settings=0x7f0a001c;
+        public static final int buttonBlack=0x7f0a0014;
+        public static final int buttonBlue=0x7f0a0012;
+        public static final int buttonBrown=0x7f0a0011;
+        public static final int buttonChoosePlayer1Name=0x7f0a0018;
+        public static final int buttonChoosePlayer2Name=0x7f0a0019;
+        public static final int buttonFoul=0x7f0a0015;
+        public static final int buttonGreen=0x7f0a0010;
+        public static final int buttonOk=0x7f0a0001;
+        public static final int buttonPink=0x7f0a0013;
+        public static final int buttonPlayer1=0x7f0a0006;
+        public static final int buttonPlayer2=0x7f0a0008;
+        public static final int buttonRed=0x7f0a000e;
+        public static final int buttonStartGame=0x7f0a001b;
+        public static final int buttonYellow=0x7f0a000f;
+        public static final int editTextPlayerName=0x7f0a0000;
+        public static final int tableRowMain1=0x7f0a0003;
+        public static final int tableRowMain2=0x7f0a0005;
+        public static final int tableRowMain3=0x7f0a0009;
+        public static final int tableRowMain4=0x7f0a000d;
+        public static final int tableRowStart1=0x7f0a0017;
+        public static final int tableRowStart2=0x7f0a001a;
+        public static final int textFrameScore=0x7f0a0007;
+        public static final int textPlayer1Score=0x7f0a000a;
+        public static final int textPlayer2Score=0x7f0a000c;
+        public static final int textPlayerBreak=0x7f0a000b;
+        public static final int textStatusBar=0x7f0a0004;
     }
     public static final class layout {
         public static final int activity_choose_player=0x7f030000;
@@ -78,55 +82,55 @@ public final class R {
         public static final int activity_start=0x7f030002;
     }
     public static final class menu {
-        public static final int choose_player=0x7f080000;
-        public static final int main=0x7f080001;
-        public static final int start=0x7f080002;
+        public static final int choose_player=0x7f090000;
+        public static final int main=0x7f090001;
+        public static final int start=0x7f090002;
     }
     public static final class string {
-        public static final int action_settings=0x7f060001;
-        public static final int app_name=0x7f060000;
-        public static final int ball_black=0x7f060018;
-        public static final int ball_blue=0x7f060016;
-        public static final int ball_brown=0x7f060015;
-        public static final int ball_green=0x7f060014;
-        public static final int ball_pink=0x7f060017;
-        public static final int ball_red=0x7f060012;
-        public static final int ball_yellow=0x7f060013;
-        public static final int cancel=0x7f06002a;
-        public static final int choose_name=0x7f06000b;
-        public static final int click_black=0x7f06001f;
-        public static final int click_blue=0x7f06001d;
-        public static final int click_brown=0x7f06001c;
-        public static final int click_button_ok=0x7f06000a;
-        public static final int click_button_player_1=0x7f060021;
-        public static final int click_button_player_2=0x7f060022;
-        public static final int click_button_start_game=0x7f060008;
-        public static final int click_foul=0x7f060020;
-        public static final int click_green=0x7f06001b;
-        public static final int click_name_1=0x7f060023;
-        public static final int click_name_2=0x7f060024;
-        public static final int click_pink=0x7f06001e;
-        public static final int click_player_1_name=0x7f060006;
-        public static final int click_player_2_name=0x7f060007;
-        public static final int click_red=0x7f060019;
-        public static final int click_yellow=0x7f06001a;
-        public static final int game_back=0x7f060025;
-        public static final int game_break=0x7f06000d;
-        public static final int game_end_frame=0x7f060026;
-        public static final int game_end_game=0x7f060028;
-        public static final int game_foul=0x7f060011;
-        public static final int game_reset_frame=0x7f060027;
-        public static final int game_score=0x7f06000e;
-        public static final int game_stop=0x7f060010;
-        public static final int game_turn=0x7f06000f;
-        public static final int game_undo=0x7f060029;
-        public static final int player_name=0x7f060005;
-        public static final int start=0x7f060009;
-        public static final int title_activity_choose_player=0x7f060003;
-        public static final int title_activity_main=0x7f060004;
-        public static final int title_activity_start=0x7f060002;
-        public static final int title_fouls=0x7f06002b;
-        public static final int warning=0x7f06000c;
+        public static final int action_settings=0x7f070001;
+        public static final int app_name=0x7f070000;
+        public static final int ball_black=0x7f070018;
+        public static final int ball_blue=0x7f070016;
+        public static final int ball_brown=0x7f070015;
+        public static final int ball_green=0x7f070014;
+        public static final int ball_pink=0x7f070017;
+        public static final int ball_red=0x7f070012;
+        public static final int ball_yellow=0x7f070013;
+        public static final int cancel=0x7f07002a;
+        public static final int choose_name=0x7f07000b;
+        public static final int click_black=0x7f07001f;
+        public static final int click_blue=0x7f07001d;
+        public static final int click_brown=0x7f07001c;
+        public static final int click_button_ok=0x7f07000a;
+        public static final int click_button_player_1=0x7f070021;
+        public static final int click_button_player_2=0x7f070022;
+        public static final int click_button_start_game=0x7f070008;
+        public static final int click_foul=0x7f070020;
+        public static final int click_green=0x7f07001b;
+        public static final int click_name_1=0x7f070023;
+        public static final int click_name_2=0x7f070024;
+        public static final int click_pink=0x7f07001e;
+        public static final int click_player_1_name=0x7f070006;
+        public static final int click_player_2_name=0x7f070007;
+        public static final int click_red=0x7f070019;
+        public static final int click_yellow=0x7f07001a;
+        public static final int game_back=0x7f070025;
+        public static final int game_break=0x7f07000d;
+        public static final int game_end_frame=0x7f070026;
+        public static final int game_end_game=0x7f070028;
+        public static final int game_foul=0x7f070011;
+        public static final int game_reset_frame=0x7f070027;
+        public static final int game_score=0x7f07000e;
+        public static final int game_stop=0x7f070010;
+        public static final int game_turn=0x7f07000f;
+        public static final int game_undo=0x7f070029;
+        public static final int player_name=0x7f070005;
+        public static final int start=0x7f070009;
+        public static final int title_activity_choose_player=0x7f070003;
+        public static final int title_activity_main=0x7f070004;
+        public static final int title_activity_start=0x7f070002;
+        public static final int title_fouls=0x7f07002b;
+        public static final int warning=0x7f07000c;
     }
     public static final class style {
         /** 
@@ -150,10 +154,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
 }

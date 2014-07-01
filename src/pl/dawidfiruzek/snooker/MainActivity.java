@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,10 +22,11 @@ public class MainActivity extends Activity {
 	private Game game = new Game();
 	private Game.Turn turn;
 	private static final String TAG = "MyActivity";
-	private TextView score1; 
-	private TextView score2;
-	private TextView currentBreak;
-	private TextView frameScore;
+	private TextView textScore1; 
+	private TextView textScore2;
+	private TextView textCurrentBreak;
+	private TextView textFrameScore;
+	private TextView textStatusBar;
 	private Button buttonPlayer1;
 	private Button buttonPlayer2;
 	private String player1Name;
@@ -41,6 +44,8 @@ public class MainActivity extends Activity {
 	private int pointsFoulFive = 5;
 	private int pointsFoulSix = 6;
 	private int pointsFoulSeven = 7;
+	Animation animationStatusBarToTheLeft;
+	Animation animationStatusBarFromRight;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,19 +64,25 @@ public class MainActivity extends Activity {
 		buttonPlayer2 = (Button)findViewById(R.id.buttonPlayer2);
 
 		turn = Turn.NOBODY;
-		score1 = (TextView) findViewById(R.id.textPlayer1Score);
-		score2 = (TextView) findViewById(R.id.textPlayer2Score);
-		currentBreak = (TextView) findViewById(R.id.textPlayerBreak);
-		frameScore = (TextView) findViewById(R.id.textFrameScore);
+		textScore1 = (TextView) findViewById(R.id.textPlayer1Score);
+		textScore2 = (TextView) findViewById(R.id.textPlayer2Score);
+		textCurrentBreak = (TextView) findViewById(R.id.textPlayerBreak);
+		textFrameScore = (TextView) findViewById(R.id.textFrameScore);
+		textStatusBar = (TextView) findViewById(R.id.textStatusBar);
 		
 		buttonPlayer1.setText(player1Name);
 		buttonPlayer2.setText(player2Name);
 		
-		frameScore.setText(player1FrameScore + " : " + player2FrameScore);
+		animationStatusBarToTheLeft = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.status_bar_to_the_left_animation);
+		animationStatusBarFromRight = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.status_bar_from_right_animation);
+		
+		textFrameScore.setText(player1FrameScore + " : " + player2FrameScore);
 
 	}
 
 	protected void updateVisualEffects() {
+//		textStatusBar.startAnimation(animationStatusBarToTheLeft);
+		textStatusBar.startAnimation(animationStatusBarFromRight);
 		switch(turn){
 		case PLAYER1:
 			buttonPlayer1.setEnabled(false);
@@ -192,9 +203,9 @@ public class MainActivity extends Activity {
 	
 	private void updateScore(){
 		if(turn != Turn.NOBODY){
-			currentBreak.setText(Integer.toString(game.getBreak()));
-			score1.setText(Integer.toString(game.getScorePlayer1()));
-			score2.setText(Integer.toString(game.getScorePlayer2()));
+			textCurrentBreak.setText(Integer.toString(game.getBreak()));
+			textScore1.setText(Integer.toString(game.getScorePlayer1()));
+			textScore2.setText(Integer.toString(game.getScorePlayer2()));
 		}
 	}
 	
