@@ -41,9 +41,9 @@ public class MainActivity extends Activity {
 	private final int pointsPink = 6;
 	private final int pointsBlack = 7;
 	private final int pointsFoulFour = 4;
-	private int pointsFoulFive = 5;
-	private int pointsFoulSix = 6;
-	private int pointsFoulSeven = 7;
+	private final int pointsFoulFive = 5;
+	private final int pointsFoulSix = 6;
+	private final int pointsFoulSeven = 7;
 	Animation animationStatusBarToTheLeft;
 	Animation animationStatusBarFromRight;
 	
