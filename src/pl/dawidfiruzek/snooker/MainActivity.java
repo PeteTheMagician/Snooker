@@ -111,9 +111,10 @@ public class MainActivity extends Activity {
 			turn = game.getCurrentTurn();
 			updateVisualEffects();
 		}
-		else{
+		else if(player1FrameScore == 0 && player2FrameScore == 0){
 			super.onBackPressed();
 		}
+		else;
 	}
 	
 	@Override
