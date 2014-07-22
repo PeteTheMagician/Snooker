@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -33,6 +32,8 @@ public class MainActivity extends Activity {
 	private String player2Name;
 	private int player1FrameScore;
 	private int player2FrameScore;
+	private int whoStartsFrame; // 1 == player1; 2 == player2; other == nobody
+	private boolean isItFirstFrame;
 	private final int pointsRed = 1;
 	private final int pointsYellow = 2;
 	private final int pointsGreen = 3;
@@ -58,6 +59,8 @@ public class MainActivity extends Activity {
 		player2Name = intent.getStringExtra("PLAYER2_NAME");
 		player1FrameScore = intent.getIntExtra("PLAYER1_FRAME_SCORE", 0);
 		player2FrameScore = intent.getIntExtra("PLAYER2_FRAME_SCORE", 0);
+		whoStartsFrame = intent.getIntExtra("WHO_STARTS_FRAME", 0);
+		isItFirstFrame = intent.getBooleanExtra("IS_IT_FIRST_ONE", true);
 
 		buttonPlayer1 = (Button)findViewById(R.id.buttonPlayer1);
 		buttonPlayer2 = (Button)findViewById(R.id.buttonPlayer2);
@@ -76,29 +79,62 @@ public class MainActivity extends Activity {
 		animationStatusBarFromRight = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.status_bar_from_right_animation);
 		
 		textFrameScore.setText(player1FrameScore + " : " + player2FrameScore);
+				
+		switch(whoStartsFrame){
+		case 1:
+			buttonPlayer1.performClick();
+			break;
+		case 2:
+			buttonPlayer2.performClick();
+			break;
+		default:
+			break;
+		}
 
 	}
 
-	protected void updateVisualEffects() {
+	private void updateVisualEffects() {
 //		textStatusBar.startAnimation(animationStatusBarToTheLeft);
 		textStatusBar.startAnimation(animationStatusBarFromRight);
 		switch(turn){
 		case PLAYER1:
 			buttonPlayer1.setEnabled(false);
 			buttonPlayer2.setEnabled(true);
+			if(isItFirstFrame){ // in first frame set player that starts game
+				setStartingPlayer(Turn.PLAYER1);
+				isItFirstFrame = false; // only first move counts
+			}
 			break;
 		case PLAYER2:
 			buttonPlayer2.setEnabled(false);
 			buttonPlayer1.setEnabled(true);
+			if(isItFirstFrame){
+				setStartingPlayer(Turn.PLAYER2);
+				isItFirstFrame = false;
+			}
 			break;
 		case NOBODY:
 			buttonPlayer1.setEnabled(true);
 			buttonPlayer2.setEnabled(true);
+			isItFirstFrame = true;
+			break;
+		default:
+			break;
+		}		
+	}
+	
+	private void setStartingPlayer(Turn who){
+//		setting player that starts first frame - second one will start next frame
+		switch(who){
+		case PLAYER1:
+			whoStartsFrame = 1;
+			break;
+		case PLAYER2:
+			whoStartsFrame = 2;
 			break;
 		default:
 			break;
 		}
-		
 	}
 	
 	@Override
@@ -138,8 +174,18 @@ public class MainActivity extends Activity {
 				turn = game.getCurrentTurn();
 				updateVisualEffects();
 				break;
-			case 2:
-				finish();
+			case 2:				
+				intent.putExtra("IS_IT_FIRST_ONE", false);
+				
+				switch(whoStartsFrame){ //put in intent player that starts next frame
+					case 1:
+						intent.putExtra("WHO_STARTS_FRAME", 2);
+					case 2:
+						intent.putExtra("WHO_STARTS_FRAME", 1);
+					default:
+						break;
+				}
+				
 //				add +1 to player's frame score
 				if(game.getScorePlayer1() > game.getScorePlayer2()){
 					intent.putExtra("PLAYER1_FRAME_SCORE", ++player1FrameScore);
@@ -147,9 +193,12 @@ public class MainActivity extends Activity {
 				else if(game.getScorePlayer1() < game.getScorePlayer2()){
 					intent.putExtra("PLAYER2_FRAME_SCORE", ++player2FrameScore);
 				}
-//				else{
+				else;
+//				{
 //					there is no reason for executing else, because previous values are from existing intent :)
-//				}					
+//				}	
+				
+				finish();
 				startActivity(intent);
 				break;
 			case 3:
