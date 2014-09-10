@@ -56,6 +56,11 @@ public class Game {
 		currentTurn.push(new lastTurn());
 	}
 	
+	public Game(Turn turn){
+		
+		currentTurn.push(new lastTurn(turn));
+	}
+	
 	public void addScore(int points, Turn turn){
 		
 		switch (turn){
@@ -65,8 +70,6 @@ public class Game {
 			case PLAYER2:
 				currentTurn.push(new lastTurn(0, points, currentTurn.peek().currentBreak + points, points, turn, false));
 				break;
-//			case NOBODY:
-//				break;
 			default:
 				break;
 		}
@@ -88,28 +91,30 @@ public class Game {
 	
 	public void undo(){
 
-		if(currentTurn.peek().isItFoul){
-			switch (currentTurn.peek().whoseMoveThisIs){
-			case PLAYER1:
-				scorePlayer2 -= currentTurn.pop().currentPoints;
-				break;
-			case PLAYER2:
-				scorePlayer1 -= currentTurn.pop().currentPoints;
-				break;
-			default:
-				break;
+		if(currentTurn.size()>1){
+			if(currentTurn.peek().isItFoul){
+				switch (currentTurn.peek().whoseMoveThisIs){
+				case PLAYER1:
+					scorePlayer2 -= currentTurn.pop().currentPoints;
+					break;
+				case PLAYER2:
+					scorePlayer1 -= currentTurn.pop().currentPoints;
+					break;
+				default:
+					break;
+				}
 			}
-		}
-		else{
-			switch (currentTurn.peek().whoseMoveThisIs){
-			case PLAYER1:
-				scorePlayer1 -= currentTurn.pop().currentPoints;
-				break;
-			case PLAYER2:
-				scorePlayer2 -= currentTurn.pop().currentPoints;
-				break;
-			default:
-				break;
+			else{
+				switch (currentTurn.peek().whoseMoveThisIs){
+				case PLAYER1:
+					scorePlayer1 -= currentTurn.pop().currentPoints;
+					break;
+				case PLAYER2:
+					scorePlayer2 -= currentTurn.pop().currentPoints;
+					break;
+				default:
+					break;
+				}
 			}
 		}
 	}

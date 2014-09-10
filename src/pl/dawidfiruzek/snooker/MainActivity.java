@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -19,7 +18,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
-	private Game game = new Game();
+	private Game game;
 	private Game.Turn turn;
 	private static final String TAG = "MyActivity";
 	private TextView textScore1; 
@@ -44,6 +43,8 @@ public class MainActivity extends Activity {
 	private final int pointsFoulFive = 5;
 	private final int pointsFoulSix = 6;
 	private final int pointsFoulSeven = 7;
+	private boolean isItBeginOfFirstFrame;
+	private Turn whoStartsFrame;
 	Animation animationStatusBarToTheLeft;
 	Animation animationStatusBarFromRight;
 	
@@ -58,11 +59,19 @@ public class MainActivity extends Activity {
 		player2Name = intent.getStringExtra("PLAYER2_NAME");
 		player1FrameScore = intent.getIntExtra("PLAYER1_FRAME_SCORE", 0);
 		player2FrameScore = intent.getIntExtra("PLAYER2_FRAME_SCORE", 0);
+		
+		isItBeginOfFirstFrame = intent.getBooleanExtra("IS_IT_BEGIN", true);
+		whoStartsFrame = (Turn) intent.getSerializableExtra("WHO_STARTS");
+		if(whoStartsFrame == null){
+			whoStartsFrame = Turn.NOBODY;
+		}
+		turn = whoStartsFrame;
 
 		buttonPlayer1 = (Button)findViewById(R.id.buttonPlayer1);
 		buttonPlayer2 = (Button)findViewById(R.id.buttonPlayer2);
-
-		turn = Turn.NOBODY;
+		
+		game = new Game(turn);
+		
 		textScore1 = (TextView) findViewById(R.id.textPlayer1Score);
 		textScore2 = (TextView) findViewById(R.id.textPlayer2Score);
 		textCurrentBreak = (TextView) findViewById(R.id.textPlayerBreak);
@@ -76,12 +85,19 @@ public class MainActivity extends Activity {
 		animationStatusBarFromRight = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.status_bar_from_right_animation);
 		
 		textFrameScore.setText(player1FrameScore + " : " + player2FrameScore);
+		updateVisualEffects();
 
 	}
 
 	protected void updateVisualEffects() {
-//		textStatusBar.startAnimation(animationStatusBarToTheLeft);
-		textStatusBar.startAnimation(animationStatusBarFromRight);
+		if(isItBeginOfFirstFrame){
+			whoStartsFrame = turn;
+			isItBeginOfFirstFrame = false;
+		}
+		else{
+//			textStatusBar.startAnimation(animationStatusBarToTheLeft);
+			textStatusBar.startAnimation(animationStatusBarFromRight);
+		}
 		switch(turn){
 		case PLAYER1:
 			buttonPlayer1.setEnabled(false);
@@ -94,6 +110,7 @@ public class MainActivity extends Activity {
 		case NOBODY:
 			buttonPlayer1.setEnabled(true);
 			buttonPlayer2.setEnabled(true);
+			isItBeginOfFirstFrame = true; //in case of pressing back button to beggining of the game
 			break;
 		default:
 			break;
@@ -103,17 +120,16 @@ public class MainActivity extends Activity {
 	
 	@Override
 	public void onBackPressed(){
-		if(turn != Turn.NOBODY){
+		if(turn == Turn.NOBODY){ //&& it is first frame!
+			super.onBackPressed();
+		}
+		else{
 			game.undo();
 			shortToast("(i) Undo move");
 			updateScore();
 			turn = game.getCurrentTurn();
 			updateVisualEffects();
 		}
-		else if(player1FrameScore == 0 && player2FrameScore == 0){
-			super.onBackPressed();
-		}
-		else;
 	}
 	
 	@Override
@@ -131,15 +147,29 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item){
 		Intent intent = getIntent();
 		switch (item.getItemId()) {
-			case 1:
+			case 1: //back
 				game.undo();
 				shortToast("(i) Undo move");
 				updateScore();
 				turn = game.getCurrentTurn();
 				updateVisualEffects();
 				break;
-			case 2:
+			case 2: //end frame
 				finish();
+				intent.putExtra("IS_IT_BEGIN", false);
+				
+				switch(whoStartsFrame){
+				case PLAYER1:
+					intent.putExtra("WHO_STARTS", Turn.PLAYER2);
+					break;
+				case PLAYER2:
+					intent.putExtra("WHO_STARTS", Turn.PLAYER1);
+					break;
+				default:
+					intent.putExtra("WHO_STARTS", Turn.NOBODY);
+					break;
+				}
+				
 //				add +1 to player's frame score
 				if(game.getScorePlayer1() > game.getScorePlayer2()){
 					intent.putExtra("PLAYER1_FRAME_SCORE", ++player1FrameScore);
@@ -153,11 +183,11 @@ public class MainActivity extends Activity {
 				startActivity(intent);
 				break;
 			case 3:
-				finish();
+				finish(); //end game
 //				after creating db we have to write some values there
 				break;
 			case 4:
-				finish();
+				finish(); //reset frame
 				startActivity(intent);
 				break;
 		}
