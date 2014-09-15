@@ -28,22 +28,23 @@ public final class R {
         public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int button_black=0x7f020000;
-        public static final int button_blue=0x7f020001;
-        public static final int button_brown=0x7f020002;
-        public static final int button_default=0x7f020003;
-        public static final int button_foul=0x7f020004;
-        public static final int button_green=0x7f020005;
-        public static final int button_oval_grey=0x7f020006;
-        public static final int button_pink=0x7f020007;
-        public static final int button_player=0x7f020008;
-        public static final int button_rectangle_green=0x7f020009;
-        public static final int button_rectangle_grey=0x7f02000a;
-        public static final int button_rectangle_purple=0x7f02000b;
-        public static final int button_rectangle_yellow=0x7f02000c;
-        public static final int button_red=0x7f02000d;
-        public static final int button_yellow=0x7f02000e;
-        public static final int ic_launcher=0x7f02000f;
+        public static final int background=0x7f020000;
+        public static final int button_black=0x7f020001;
+        public static final int button_blue=0x7f020002;
+        public static final int button_brown=0x7f020003;
+        public static final int button_default=0x7f020004;
+        public static final int button_foul=0x7f020005;
+        public static final int button_green=0x7f020006;
+        public static final int button_oval_grey=0x7f020007;
+        public static final int button_pink=0x7f020008;
+        public static final int button_player=0x7f020009;
+        public static final int button_rectangle_green=0x7f02000a;
+        public static final int button_rectangle_grey=0x7f02000b;
+        public static final int button_rectangle_purple=0x7f02000c;
+        public static final int button_rectangle_yellow=0x7f02000d;
+        public static final int button_red=0x7f02000e;
+        public static final int button_yellow=0x7f02000f;
+        public static final int ic_launcher=0x7f020010;
     }
     public static final class id {
         public static final int TableLayoutMain1=0x7f0a0002;
