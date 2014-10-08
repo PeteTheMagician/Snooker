@@ -9,6 +9,16 @@
     tools:context=".ChoosePlayerActivity" 
     android:background="@drawable/background">
 
+    <TextView
+        android:id="@+id/testDbOutput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/editTextPlayerName"
+        android:layout_marginTop="30dp"
+        android:text="test" >
+        
+    </TextView>
+    
     <EditText
         android:id="@+id/editTextPlayerName"
         android:layout_width="wrap_content"

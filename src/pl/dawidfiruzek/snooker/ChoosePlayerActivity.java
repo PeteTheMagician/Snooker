@@ -3,6 +3,7 @@ package pl.dawidfiruzek.snooker;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -19,6 +20,7 @@ public class ChoosePlayerActivity extends Activity {
 	private EditText playerNameText;
 	private String playerName;
 	private String warning;
+	private TextView testDbText;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class ChoosePlayerActivity extends Activity {
 		
 		playerNameText = (EditText)findViewById(R.id.editTextPlayerName);
 		warning = getResources().getString(R.string.warning);
+		testDbText = (TextView)findViewById(R.id.testDbOutput);
 		
 		playerNameText.setOnEditorActionListener(new OnEditorActionListener() {		
 			@Override
@@ -45,6 +48,26 @@ public class ChoosePlayerActivity extends Activity {
 			}
 		});		
 		
+		PlayersDataBase dataBase = new PlayersDataBase(this);
+//		dataBase.addPlayer("TestPlayer1");
+//		dataBase.addPlayer("TestPlayer2");
+		Cursor cursor = dataBase.getAll();
+		while(cursor.moveToNext()){
+			int number = cursor.getInt(0);
+			String name = cursor.getString(1);
+			int fWon = cursor.getInt(2);
+			int fLost = cursor.getInt(3);
+			int maxBreak = cursor.getInt(4);
+			int points = cursor.getInt(5);
+//			DB_TITLE + " table players (" +
+//			DB_INDEX + " integer primary key autoincrement," +
+//			DB_NAME + " text," +
+//			DB_FRAMES_WON + " integer," +
+//			DB_FRAMES_LOST + " integer," +
+//			DB_MAX_BREAK + " integer," +
+//			DB_POINTS + " integer);" +
+			testDbText.setText(testDbText.getText() + "\n" +number+ " " +name+ " " + points);
+		}
 	}
 
 	@Override
