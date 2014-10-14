@@ -49,9 +49,13 @@ public class ChoosePlayerActivity extends Activity {
 		});		
 		
 		PlayersDataBase dataBase = new PlayersDataBase(this);
+		testDbText.setText(null);
 //		dataBase.addPlayer("TestPlayer1");
 //		dataBase.addPlayer("TestPlayer2");
 		Cursor cursor = dataBase.getAll();
+
+		dataBase.deleteAllPlayers();
+		
 		while(cursor.moveToNext()){
 			int number = cursor.getInt(0);
 			String name = cursor.getString(1);

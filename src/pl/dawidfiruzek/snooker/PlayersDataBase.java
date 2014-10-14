@@ -1,5 +1,6 @@
 package pl.dawidfiruzek.snooker;
 
+import android.R.integer;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -55,5 +56,30 @@ public class PlayersDataBase extends SQLiteOpenHelper{
 		SQLiteDatabase db = getWritableDatabase();
 		Cursor cursor = db.query(DB_TITLE, columns, null, null, null, null, null);		
 		return cursor;
+	}
+	
+	public void deletePlayer(int id){
+		SQLiteDatabase db = getWritableDatabase();
+		String[] arg = {Integer.toString(id)};
+		db.delete(DB_TITLE, DB_NUMBER+"=?", arg);
+	}
+	
+	public void deleteAllPlayers(){
+		SQLiteDatabase db = getWritableDatabase();
+		db.delete(DB_TITLE, null, null);
+	}
+	
+	
+	//TODO read from db and update!
+	public void updatePlayer(String name, int framesWon, int framesLost, int maxBreak, int points){
+		SQLiteDatabase db = getWritableDatabase();
+		ContentValues values = new ContentValues();
+
+		values.put(DB_FRAMES_WON, framesWon);
+		values.put(DB_FRAMES_LOST, framesLost);
+		values.put(DB_MAX_BREAK, maxBreak);
+		values.put(DB_POINTS, points);
+		String[] args = {name};
+		db.update(DB_TITLE, values, DB_NAME+"=?", args);
 	}
 }
